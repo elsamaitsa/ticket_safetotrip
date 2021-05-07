@@ -40,19 +40,19 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link">
+                <a href="<?=base_url()?>Jadwal" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Jadwal</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link">
+                <a href="<?=base_url()?>Layanan" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Layanan Ticket</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link">
+                <a href="<?=base_url()?>Ticket" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Reference Ticket</p>
                 </a>
