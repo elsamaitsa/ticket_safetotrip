@@ -28,13 +28,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="<?=base_url()?>Type" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Type Ticket</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
+                <a href="<?=base_url()?>Group" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Group Days</p>
                 </a>
