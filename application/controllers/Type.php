@@ -21,6 +21,7 @@ class Type extends CI_Controller
 		$this->load->view('v_ListType', $data);
 		$this->load->view('template/footer');
 	}
+
 	public function Insert()
 	{
 		$this->M_type->Insert();

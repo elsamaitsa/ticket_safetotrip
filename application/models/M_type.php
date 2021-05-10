@@ -6,7 +6,7 @@ class M_type extends CI_model
 
     public function view_type()
     {
-        $this->db->group_by('rvarianticket_id');
+        $this->db->order_by('rvarianticket_id');
         $sql = $this->db->get('r_varianticket');
         if ($sql->num_rows() > 0) {
             return $sql->result_array();

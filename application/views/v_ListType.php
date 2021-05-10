@@ -104,6 +104,7 @@
 		margin: 100px auto;
 	}
 </style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
@@ -247,29 +248,6 @@
 </div>
 
 <!-- Modal Hapus -->
-<div class="modal fade" id="HapusModalw">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header bg-warning">
-				<h5 class="modal-title">DELETE CONFIRMATION</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true"><i class="ico--close"></i></span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<p>Anda Yakin Menghapus Data ini?</p>
-			</div>
-			<div class="modal-footer justify-content-between">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<a class="btn btn-danger btn-ok">Delete</a>
-			</div>
-
-		</div>
-		<!-- /.modal-content -->
-	</div>
-	<!-- /.modal-dialog -->
-</div>
-
 <div id="HapusModal" class="modal fade">
 	<div class="modal-dialog modal-confirm">
 		<div class="modal-content">
