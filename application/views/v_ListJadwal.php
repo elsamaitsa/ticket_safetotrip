@@ -160,8 +160,8 @@
 									<tr>
 										<td><?= ++$no ?></td>
 										<td><?= $value['rjadwal_hari'] ?></td>
-										<td><?= $value['rjadwal_start_time'] ?> WIB</td>
-										<td><?= $value['rjadwal_end_time'] ?> WIB</td>
+										<td><?= date('H:i', strtotime($value['rjadwal_start_time'])); ?> WIB</td>
+										<td><?= date('H:i', strtotime($value['rjadwal_end_time']));  ?> WIB</td>
 										<td class="text-center">
 											<a href="javascript:;" data-id="<?= $value['rjadwal_id'] ?>" data-start="<?= $value['rjadwal_start_time'] ?>" data-hari="<?= $value['rjadwal_hari'] ?>" data-end="<?= $value['rjadwal_end_time'] ?>" data-toggle="modal" data-target="#EditModal">
 												<button class="btn btn-outline-info btn-sm" data-toggle="modal" title="Edit"><i class="fa fa-edit"></i></button>
