@@ -12,7 +12,6 @@ class Group extends CI_Controller {
 	public function index()
 	{
 		$data['group'] = $this->M_group->all()->result_array();
-		$data['idGroup'] = ($this->M_group->all()->num_rows() + 1);
 		$this->load->view('template/header');
 		$this->load->view('template/navbar');
 		$this->load->view('template/sidebar');
@@ -26,7 +25,7 @@ class Group extends CI_Controller {
 			'rmoment_name' => $this->input->post('rmoment_name'),
 		];
 		$this->M_group->save($set);
-		redirect('Group');
+		redirect('Group', 'refresh');
 	}
 
 	public function edit(int $id)
@@ -42,13 +41,13 @@ class Group extends CI_Controller {
 			'rmoment_name' => $this->input->post('rmoment_name'),
 		];
 		$this->M_group->save($set, $id);
-		redirect('Group');
+		redirect('Group', 'refresh');
 	}
 
 	public function destroy(int $id)
 	{
 		$this->M_group->destroy($id);
-		redirect('Group');
+		redirect('Group', 'refresh');
 	}
 }
 
