@@ -160,9 +160,9 @@
 					<div class="form-group">
 						<label class="font-15">Start Time</label>
 
-						<div class="input-group date" id="startTime" data-target-input="nearest">
-							<input type="text" name="start_time" class="form-control start datetimepicker-input" data-target="#startTime" required />
-							<div class="input-group-append" data-target="#startTime" data-toggle="datetimepicker">
+						<div class="input-group date" id="startTime_edit" data-target-input="nearest">
+							<input type="text" name="start_time" class="form-control start datetimepicker-input" data-target="#startTime_edit" required />
+							<div class="input-group-append" data-target="#startTime_edit" data-toggle="datetimepicker">
 								<div class="input-group-text"><i class="far fa-clock"></i></div>
 							</div>
 						</div>
@@ -170,9 +170,9 @@
 					</div>
 					<div class="form-group">
 						<label class="font-15">End Time</label>
-						<div class="input-group date" id="endTime" data-target-input="nearest">
-							<input type="text" name="end_time" class="form-control end datetimepicker-input" data-target="#endTime" required />
-							<div class="input-group-append" data-target="#endTime" data-toggle="datetimepicker">
+						<div class="input-group date" id="endTime_edit" data-target-input="nearest">
+							<input type="text" name="end_time" class="form-control end datetimepicker-input" data-target="#endTime_edit" required />
+							<div class="input-group-append" data-target="#endTime_edit" data-toggle="datetimepicker">
 								<div class="input-group-text"><i class="far fa-clock"></i></div>
 							</div>
 						</div>
@@ -227,7 +227,17 @@
 			pickDate: false,
 			pickSeconds: false,
 			pick12HourFormat: false
-		})
+		});
+
+		//Timepicker
+		$('#startTime_edit,#endTime_edit').datetimepicker({
+			//   format: 'LT',
+			//   pick12HourFormat: false
+			format: 'HH:mm',
+			pickDate: false,
+			pickSeconds: false,
+			pick12HourFormat: false
+		});
 
 		$('#HapusModal').on('show.bs.modal', function(e) {
 			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
