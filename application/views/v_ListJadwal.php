@@ -144,24 +144,24 @@
 			</div>
 			<form class="form" action="<?= site_url('Jadwal/Update'); ?>" method="POST">
 				<div class="modal-body">
-					<input type="hidden" name="rjadwal_id" class="form-control id" placeholder="ID Jadwal">
+					<input type="hidden" name="rjadwal_id" class="form-control" id="id" placeholder="ID Jadwal">
 					<div class="form-group">
 						<label class="font-15">Hari</label>
-						<select name="hari" id="hari" class="form-control select2" required autofocus>
-							<option value="Senin" selected="selected">Senin</option>
-							<option value="Selasa">Selasa</option>
-							<option value="Rabu">Rabu</option>
-							<option value="Kamis">Kamis</option>
-							<option value="Jum'at">Jum'at</option>
-							<option value="Sabtu">Sabtu</option>
-							<option value="Minggu">Minggu</option>
+						<select name="hari" id="hari" class="form-control " required autofocus>
+							<option value="Senin" id="Senin">Senin</option>
+							<option value="Selasa" id="Selasa">Selasa</option>
+							<option value="Rabu" id="Rabu">Rabu</option>
+							<option value="Kamis" id="Kamis">Kamis</option>
+							<option value="Jum'at" id="Jum'at">Jum'at</option>
+							<option value="Sabtu" id="Sabtu">Sabtu</option>
+							<option value="Minggu" id="Minggu">Minggu</option>
 						</select>
 					</div>
 					<div class="form-group">
 						<label class="font-15">Start Time</label>
 
 						<div class="input-group date" id="startTime_edit" data-target-input="nearest">
-							<input type="text" name="start_time" class="form-control start datetimepicker-input" data-target="#startTime_edit" required />
+							<input type="text" name="start_time" class="form-control datetimepicker-input" id="start" data-target="#startTime_edit" required />
 							<div class="input-group-append" data-target="#startTime_edit" data-toggle="datetimepicker">
 								<div class="input-group-text"><i class="far fa-clock"></i></div>
 							</div>
@@ -171,7 +171,7 @@
 					<div class="form-group">
 						<label class="font-15">End Time</label>
 						<div class="input-group date" id="endTime_edit" data-target-input="nearest">
-							<input type="text" name="end_time" class="form-control end datetimepicker-input" data-target="#endTime_edit" required />
+							<input type="text" name="end_time" class="form-control datetimepicker-input" id="end" data-target="#endTime_edit" required />
 							<div class="input-group-append" data-target="#endTime_edit" data-toggle="datetimepicker">
 								<div class="input-group-text"><i class="far fa-clock"></i></div>
 							</div>
@@ -248,9 +248,9 @@
 			var modal = $(this)
 			// Isi nilai pada field
 			modal.find('#id').attr("value", div.data('id'));
-			modal.find('#hari').attr("value", div.data('hari'));
-			modal.find('.start').attr("value", div.data('start'));
-			modal.find('.end').attr("value", div.data('end'));
+			modal.find('#start').attr("value", div.data('start'));
+			modal.find('#end').attr("value", div.data('end'));
+			document.getElementById(div.data('hari')).selected = true;
 		});
 	});
 </script>
