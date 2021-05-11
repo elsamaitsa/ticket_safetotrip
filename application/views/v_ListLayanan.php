@@ -36,7 +36,7 @@
 							<button class="btn btn-block btn-outline-secondary btn-sm" title="Refresh"><i class="fa fa-sync-alt"></i></button>
 						</div>
 					</div>
-					<table id="example1" class="table table-sm table-striped">
+					<table id="example1" class="table table-sm table-striped font-13">
 						<thead class="text-center">
 							<tr>
 								<th>No</th>

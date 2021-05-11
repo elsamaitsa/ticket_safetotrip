@@ -15,13 +15,13 @@
         <li class="nav-item">
             <a href="<?=base_url()?>Main" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>Dashboard</p>
+              <p class="font-14">Dashboard</p>
             </a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
+              <p class="font-14">
                 Ticket
                 <i class="right fas fa-angle-left"></i>
               </p>
@@ -30,31 +30,31 @@
               <li class="nav-item">
                 <a href="<?=base_url()?>Type" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Type Ticket</p>
+                  <p class="font-14">Type Ticket</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="<?=base_url()?>Group" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Group Days</p>
+                  <p class="font-14">Group Days</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="<?=base_url()?>Jadwal" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Jadwal</p>
+                  <p class="font-14">Jadwal</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="<?=base_url()?>Layanan" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Layanan Ticket</p>
+                  <p class="font-14">Layanan Ticket</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="<?=base_url()?>Ticket" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Reference Ticket</p>
+                  <p class="font-14">Reference Ticket</p>
                 </a>
               </li>
             </ul>
