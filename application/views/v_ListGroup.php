@@ -136,13 +136,16 @@
 				<div class="icon-box">
 					<i class="fas fa-times" style="margin-left: 20px;">&#xE5CD;</i>
 				</div>
-				<h4 class="modal-title w-20">Apakah Anda Yakin Data Akan Dihapus?</h4>
+				<h4 class="modal-title w-100">Are you sure?</h4>
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			</div>
+			<div class="modal-body">
+				<p>Do you really want to delete these records? This process cannot be undone.</p>
+			</div>
 			<div class="modal-footer justify-content-center">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 				<a href="<?= base_url('Group/destroy/' . $value['rmoment_id']) ?>" class="btn btn-danger"
-					style="padding-top: 12px;">Ya</a>
+					style="padding-top: 12px; color:#fff;">Delete</a>
 			</div>
 		</div>
 	</div>
