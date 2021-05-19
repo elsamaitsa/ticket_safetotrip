@@ -20,9 +20,9 @@
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-chart-pie"></i>
+            <i class="nav-icon fas fa-folder-open"></i>
             <p class="font-14">
-              Ticket
+              Master Data
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
@@ -51,6 +51,17 @@
                 <p class="font-14">Layanan Ticket</p>
               </a>
             </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-chart-pie"></i>
+            <p class="font-14">
+              Ticketing
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="<?= base_url() ?>Ticket" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
@@ -58,9 +69,15 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="<?= base_url() ?>Pesanan" class="nav-link">
+              <a href="<?= base_url() ?>Booking" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p class="font-14">Pesanan</p>
+                <p class="font-14">Booking</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= base_url() ?>T_Ticket" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p class="font-14">Transaksi Ticket</p>
               </a>
             </li>
           </ul>

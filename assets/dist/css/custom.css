@@ -231,6 +231,48 @@ div.dataTables_wrapper div.dataTables_filter {
 	}
 }
 
+[class*=sidebar-dark-] .nav-sidebar>.nav-item>.nav-treeview {
+	background: 0 0;
+	margin-left: 23px;
+}
+
+
+.box-label {
+	width: 40%;
+	padding: 3px;
+	border-radius: 10px;
+	font-size: 12px;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.bg-box-blue {
+	background: var(--info);
+	color: var(--white);
+}
+
+.bg-box-green {
+	background: var(--success);
+	color: var(--white);
+}
+
+.bg-box-gray {
+	background: var(--gray);
+	color: var(--white);
+}
+
+.bg-box-dark {
+	background: var(--dark);
+	color: var(--white);
+}
+
+.bg-box-gray {
+	background: var(--gray);
+	color: var(--white)
+}
+
+
 /* LOGIN */
 
 
@@ -260,11 +302,11 @@ div.dataTables_wrapper div.dataTables_filter {
 	color: #cccccc;
   }
    */
-  
-  
-  /* STRUCTURE */
-  
-  /* .wrapper {
+
+
+/* STRUCTURE */
+
+/* .wrapper {
 	display: flex;
 	align-items: center;
 	flex-direction: column; 
@@ -297,11 +339,11 @@ div.dataTables_wrapper div.dataTables_filter {
 	border-radius: 0 0 10px 10px;
   }
    */
-  
-  
-  /* TABS */
-  
-  /* h2.inactive {
+
+
+/* TABS */
+
+/* h2.inactive {
 	color: #cccccc;
   }
   
@@ -309,12 +351,12 @@ div.dataTables_wrapper div.dataTables_filter {
 	color: #0d0d0d;
 	border-bottom: 2px solid #5fbae9;
   } */
-  
-  
-  
-  /* FORM TYPOGRAPHY*/
-  
-  /* input[type=button], input[type=submit], input[type=reset]  {
+
+
+
+/* FORM TYPOGRAPHY*/
+
+/* input[type=button], input[type=submit], input[type=reset]  {
 	background-color: #56baed;
 	border: none;
 	color: white;
@@ -408,14 +450,13 @@ div.dataTables_wrapper div.dataTables_filter {
 	color: #cccccc;
   }
    */
-  
-  /* OTHERS */
-  
-  /* *:focus {
+
+/* OTHERS */
+
+/* *:focus {
 	  outline: none;
   } 
   
   #icon {
 	width:60%;
   } */
-  

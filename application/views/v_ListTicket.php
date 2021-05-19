@@ -31,7 +31,7 @@
  					<div class="d-flex mb-4">
  						<div>
  							<button class="btn btn-block btn-outline-info btn-sm" data-toggle="modal"
- 								data-target="#TambahModal"><i class="fa fa-plus mr-1"></i>Tambah</button>
+ 								data-target="#modal_ticket"><i class="fa fa-plus mr-1"></i>Tambah</button>
  						</div>
  						<div class="ml-1">
  							<button class="btn btn-block btn-outline-secondary btn-sm" title="Refresh"><i
@@ -50,17 +50,7 @@
  							</tr>
  						</thead>
  						<tbody class="text-center">
- 							<tr>
- 								<td>1</td>
- 								<td>IDR 30.000</td>
- 								<td>Dewasa</td>
- 								<td>Weekend</td>
- 								<td>Telaga Nilem</td>
- 								<td class="text-center"><button class="btn btn-outline-info btn-sm" data-toggle="modal"
- 										data-target="#EditModal" title="Edit"><i class="fa fa-edit"></i></button>
- 									<button class="btn btn-outline-danger btn-sm" title="Hapus"><i
- 											class="fa fa-trash"></i></button></td>
- 							</tr>
+
  						</tbody>
 
  					</table>
@@ -74,7 +64,7 @@
  </div>
 
  <!-- Modal Tambah -->
- <div class="modal fade" id="TambahModal">
+ <div class="modal fade" id="modal_ticket">
  	<div class="modal-dialog">
  		<div class="modal-content">
  			<div class="modal-header bg-info">
@@ -83,39 +73,50 @@
  					<span aria-hidden="true"><i class="ico--close"></i></span>
  				</button>
  			</div>
- 			<div class="modal-body">
- 				<form>
+ 			<div class="modal-body font-13">
+ 				<form id="form_ticket">
  					<div class="form-group">
  						<label class="font-15">ID Ticket</label>
- 						<input type="email" class="form-control" placeholder="ID Jadwal">
+ 						<input type="email" class="form-control font-13" value="<?php echo $id;?>">
+						 <span class="help-block"></span>
  					</div>
-                     <div class="form-group">
+ 					<div class="form-group">
  						<label class="font-15">Harga Ticket</label>
- 						<input type="email" class="form-control" placeholder="ex: 30000">
+ 						<input type="email" class="form-control font-13" placeholder="ex: 30000">
+						 <span class="help-block"></span>
  					</div>
  					<div class="form-group">
  						<label class="font-15">Nama Type Ticket</label>
- 						<select class="form-control">
- 							<option>Dewasa</option>
- 							<option>Anak-anak</option>
+ 						<select class="form-control font-13" name="rvarianticket_id">
+ 							<option value="">No Selected</option>
+ 							<?php foreach($type as $row):?>
+ 							<option value="<?php echo $row->rvarianticket_id;?>"><?php echo $row->rvarianticket_nama;?>
+ 							</option>
+ 							<?php endforeach;?>
  						</select>
+						 <span class="help-block"></span>
  					</div>
  					<div class="form-group">
  						<label class="font-15">Group Days</label>
- 						<select class="form-control">
- 							<option>Weekdays</option>
- 							<option>Weekend</option>
+ 						<select class="form-control font-13" name="rmoments_id">
+						 <option value="">No Selected</option>
+ 							<?php foreach($group as $row):?>
+ 							<option value="<?php echo $row->rmoment_id;?>"><?php echo $row->rmoment_name;?>
+ 							</option>
+ 							<?php endforeach;?>
  						</select>
+						 <span class="help-block"></span>
  					</div>
  					<div class="form-group">
  						<label class="font-15">Wisata</label>
- 						<input type="email" class="form-control" placeholder="Cari Jadwal">
+ 						<input type="email" class="form-control font-13" placeholder="Cari Jadwal">
  					</div>
  				</form>
+				 <span id="cek_result"></span>
  			</div>
  			<div class="modal-footer justify-content-between">
  				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
- 				<button type="button" class="btn btn-info"><i class="fa fa-save mr-1"></i>Simpan</button>
+ 				<button type="submit" id="btn_simpan" class="btn btn-info"><i class="fa fa-save mr-1"></i>Simpan</button>
  			</div>
  		</div>
  		<!-- /.modal-content -->
@@ -124,7 +125,7 @@
  </div>
  <!-- /Modal -->
 
- <!-- Modal Tambah -->
+ <!-- Modal Edit -->
  <div class="modal fade" id="EditModal">
  	<div class="modal-dialog">
  		<div class="modal-content">
@@ -135,12 +136,12 @@
  				</button>
  			</div>
  			<div class="modal-body">
-             <form>
+ 				<form>
  					<div class="form-group">
  						<label class="font-15">ID Ticket</label>
- 						<input type="email" class="form-control" placeholder="ID Jadwal">
+ 						<input type="email" class="form-control">
  					</div>
-                     <div class="form-group">
+ 					<div class="form-group">
  						<label class="font-15">Harga Ticket</label>
  						<input type="email" class="form-control" placeholder="ex: 30000">
  					</div>
@@ -175,22 +176,103 @@
  </div>
  <!-- /Modal -->
  <script>
+ 	var save_method; //for save method string
+ 	var table;
  	$(document).ready(function () {
- 		$("#example1").DataTable({
- 			"responsive": true,
- 			"autoWidth": false,
- 		});
- 		$('.select2').select2();
+ 		//datatables
+ 		table = $('#example1').DataTable({
+ 			"lengthMenu": [
+ 				[5, 10, 50, -1],
+ 				[10, 25, 50, "All"]
+ 			],
 
-         //Timepicker
-    $('#startTime,#endTime').datetimepicker({
-    //   format: 'LT',
-    //   pick12HourFormat: false
-    format: 'HH:mm',
-        pickDate: false,
-        pickSeconds: false,
-        pick12HourFormat: false 
-    })
+ 			"processing": true, //Feature control the processing indicator.
+ 			"serverSide": true, //Feature control DataTables' server-side processing mode.
+ 			"order": [], //Initial no order.
+
+ 			// Load data for the table's content from an Ajax source
+ 			"ajax": {
+ 				"url": "<?php echo base_url('Ticket/list_ticket')?>",
+ 				"type": "POST"
+ 			},
+
+ 			//Set column definition initialisation properties.
+ 			"columnDefs": [{
+ 				"targets": [-1], //last column
+ 				"orderable": false, //set not orderable
+ 			}, ],
+
+ 		});
+
+		//set input/textarea/select event when change value, remove class error and remove text help block 
+		$("input").change(function () {
+			$(this).parent().parent().removeClass('has-error');
+			$(this).next().empty();
+		});
+	
+		$("select").change(function () {
+			$(this).parent().parent().removeClass('has-error');
+			$(this).next().empty();
+		});
+
+		 $('#btn_simpan').click(function () {
+			$.ajax({
+				type: "POST",
+				url: "<?php echo base_url('Ticket/cek_ticket')?>",
+				data: $('#form_ticket').serialize(),
+				success: function (data) {
+					if (data === "ok") {
+						$('#cek_result').html('<div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-circle"></i> Data Sudah ada, Input Indikator yg lain ya<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+					} else {
+						var url_add = "<?php echo base_url('Ticket/add_ticket')?>";
+						// ajax adding data to database
+						$.ajax({
+							url: url_add,
+							type: "POST",
+							data: $('#form_ticket').serialize(),
+							dataType: "JSON",
+							success: function (data) {
+
+								if (data
+									.status) //if success close modal and reload ajax table
+								{
+									$('#modal_ticket').modal('hide');
+									reload_table();
+								} else {
+									for (var i = 0; i < data.inputerror
+										.length; i++) {
+										$('[name="' + data.inputerror[i] + '"]')
+											.parent().parent().addClass(
+												'has-error'
+											); //select parent twice to select div form-group class and add has-error class
+										$('[name="' + data.inputerror[i] + '"]')
+											.next().text(data.error_string[
+												i
+											]); //select span help-block class set text error string
+									}
+								}
+								$('#btn_simpan').html('<i class="fa fa-floppy-o mr-1"></i>Saving...'); //change button text
+								$('#btn_simpan').attr('disabled', false); //set button enable 
+								window.location.reload();
+								stay_tab();
+
+							},
+							error: function (jqXHR, textStatus, errorThrown) {
+								alert('Error adding / update data');
+								$('#btn_simpan').text(
+									'save'); //change button text
+								$('#btn_simpan').attr('disabled',
+									false); //set button enable 
+
+							}
+						});
+					}
+					// console.log("tuk tuk tuk");
+				}
+			})
+		});
+
+		
  	});
 
  </script>
