@@ -6,9 +6,10 @@ class Group extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
+		$this->satpam->jaga();
         $this->load->model('M_group');
     }
-
+	
 	public function index()
 	{
 		$data['group'] = $this->M_group->all()->result_array();

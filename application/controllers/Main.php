@@ -5,6 +5,7 @@ class Main extends CI_Controller {
 
 	public function index()
 	{
+		$this->satpam->jaga();
 		$this->load->view('template/header');
 		$this->load->view('template/navbar');
 		$this->load->view('template/sidebar');

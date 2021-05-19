@@ -7,7 +7,7 @@ class Type extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-
+		$this->satpam->jaga();
 		$this->load->model('M_type');
 	}
 

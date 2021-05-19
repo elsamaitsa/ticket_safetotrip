@@ -18,7 +18,13 @@
             </div>
 
             <!-- Login Form -->
-            <form>
+            <form method="POST">
+                <!-- <?php if ($pesan = $this->session->flashdata('message')) : ?>
+                    <div class="alert alert-danger alert-dismissible show fade">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <?= $pesan ?>
+                    </div>
+                <?php endif ?> -->
                 <input type="email" id="login" class="fadeIn second" name="email" placeholder="Email" required>
                 <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password" required>
                 <input type="submit" class="fadeIn fourth" value="Log In">
