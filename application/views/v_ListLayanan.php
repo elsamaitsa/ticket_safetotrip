@@ -39,7 +39,7 @@
 					<table id="example1" class="table table-sm table-striped font-13">
 						<thead class="text-center">
 							<tr>
-								<th>No</th>
+								<th>ID Service</th>
 								<th>Nama Layanan Ticket</th>
 								<th>Action</th>
 							</tr>

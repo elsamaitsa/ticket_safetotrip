@@ -39,7 +39,7 @@
 					<table id="example1" class="table table-sm table-striped font-13">
 						<thead class="text-center">
 							<tr>
-								<th>No</th>
+								<th>ID Type</th>
 								<th>Type Ticket</th>
 								<th>Nama Type Ticket</th>
 								<th>Action</th>
