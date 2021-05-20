@@ -1,5 +1,5 @@
 <footer class="main-footer">
-    <strong>Copyright &copy; 2021 Admin-Safe2Trip.</strong>
+    <strong>Copyright &copy; 2021 Admin-Wisata.</strong>
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 3.1.0-pre
     </div>

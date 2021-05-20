@@ -13,8 +13,8 @@
 			<div class="col-md-6 col-sm-6 text-center">
 				<img src="<?=base_url()?>assets/image/3071357.jpg" style="width: 67%;">
 				<div class="box-text">
-                    <h6 class="font-weight-bold">Selamat datang,</h6>
-                    <h6 class="font-12">Silahkan login sistem sebagai admin sesuai dengan destinasi yang anda kelola</h6>
+                    <h6 class="font-weight-bold">Halo,</h6>
+                    <h6 class="font-12">Selamat Datang di Aplikasi Admin Wisata, Silahkan login sistem sebagai admin sesuai dengan wisata yang anda kelola</h6>
 				</div>
 			</div>
 			<div class="col-md-6 col-sm-6 f-poppins box-2">
