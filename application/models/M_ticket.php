@@ -2,9 +2,9 @@
 
 class M_ticket extends CI_Model{
 	var $table = 'r_ticket';
-	// var $view = 'v_kpi';
-	var $column_order = array('rticket_id','rticket_harga','rvarianticket_id','rmoment_id','mdestinasi_id','rjadwal_id'); //set column field database for datatable orderable
-	var $column_search = array('rticket_harga'); //set column field database for datatable searchable just firstname , lastname , address are searchable
+	var $view = 'v_r_ticket';
+	var $column_order = array('rticket_id','rticket_harga','rvarianticket_id','rvarianticket_nama','rmoment_id','rmoment_name','mdestinasi_id','mdestinasi_nama'); //set column field database for datatable orderable
+	var $column_search = array('rticket_nama'); //set column field database for datatable searchable just firstname , lastname , address are searchable
 	var $order = array('rticket_id' => 'asc'); // default order 
 
 	public function __construct()
@@ -16,7 +16,7 @@ class M_ticket extends CI_Model{
 	private function _get_datatables_query()
 	{
 		
-		$this->db->from($this->table);
+		$this->db->from($this->view);
 
 		$i = 0;
 	
@@ -70,13 +70,13 @@ class M_ticket extends CI_Model{
 
 	public function count_all()
 	{
-		$this->db->from($this->table);
+		$this->db->from($this->view);
 		return $this->db->count_all_results();
 	}
 
 	public function get_by_id($rticket_id)
 	{
-		$this->db->from('v_combo_kpi');
+		$this->db->from('r_ticket');
 		$this->db->where('rticket_id',$rticket_id);
 		$query = $this->db->get();
 
@@ -95,9 +95,9 @@ class M_ticket extends CI_Model{
 		return $this->db->affected_rows();
 	}
 
-	public function delete_by_id($tkpi_id)
+	public function delete_by_id($rticket_id)
 	{
-		$this->db->where('tkpi_id', $tkpi_id);
+		$this->db->where('rticket_id', $rticket_id);
 		$this->db->delete($this->table);
 	}
 

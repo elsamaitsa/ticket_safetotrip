@@ -30,9 +30,9 @@ class Ticket extends CI_Controller {
 			$row = array();
 			$row[] = $ticket->rticket_id;
 			$row[] = $ticket->rticket_harga;
-			$row[] = $ticket->rvarianticket_id;
-			$row[] = $ticket->rmoment_id;
-			$row[] = $ticket->mdestinasi_id;
+			$row[] = $ticket->rvarianticket_nama;
+			$row[] = $ticket->rmoment_name;
+			$row[] = $ticket->mdestinasi_nama;
 
 			//add html for action
 			$row[] = '<a class="btn btn-outline-info btn-sm" href="javascript:void(0)" title="Edit" onclick="edit_ticket('."'".$ticket->rticket_id."'".')"><i class="fa fa-edit"></i></a>
@@ -51,12 +51,12 @@ class Ticket extends CI_Controller {
 		echo json_encode($output);
 	}
 
-	// public function edit_ticket($id)
-	// {
-	// 	$data = $this->ticket->get_by_id($id);
-	// 	// $data->dob = ($data->dob == '0000-00-00') ? '' : $data->dob; // if 0000-00-00 set tu empty for datepicker compatibility
-	// 	echo json_encode($data);
-	// }
+	public function edit_ticket($id)
+	{
+		$data = $this->ticket->get_by_id($id);
+		// $data->dob = ($data->dob == '0000-00-00') ? '' : $data->dob; // if 0000-00-00 set tu empty for datepicker compatibility
+		echo json_encode($data);
+	}
 
 	function get_autocomplete_destinasi(){
         if(isset($_GET['term'])){
@@ -112,11 +112,11 @@ class Ticket extends CI_Controller {
 	// 	echo json_encode(array("status" => TRUE));
 	// }
 
-	// public function delete_indikator($mindikator_id)
-	// {
-	// 	$this->indikator->delete_by_id($mindikator_id);
-	// 	echo json_encode(array("status" => TRUE));
-	// }
+	public function delete_ticket($rticket_id)
+	{
+		$this->ticket->delete_by_id($rticket_id);
+		echo json_encode(array("status" => TRUE));
+	}
 	
 }
 

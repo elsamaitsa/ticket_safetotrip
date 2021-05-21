@@ -200,6 +200,27 @@
 		table.ajax.reload(null, false); //reload datatable ajax 
 	}
 
+	function delete_ticket(rticket_id) {
+		if (confirm('Are you sure delete this data?')) {
+			// ajax delete data to database
+			$.ajax({
+				url: "<?php echo base_url('Ticket/delete_ticket')?>/" + rticket_id,
+				type: "POST",
+				dataType: "JSON",
+				success: function (data) {
+					//if success reload ajax table
+					$('#modal_ticket').modal('hide');
+					reload_table();
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					alert('Error deleting data');
+				}
+			});
+
+		}
+	}
+
+
  	var save_method; //for save method string
  	var table;
  	$(document).ready(function () {
