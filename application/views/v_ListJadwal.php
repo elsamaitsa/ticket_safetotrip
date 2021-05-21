@@ -152,7 +152,7 @@
 							<option value="Selasa" id="Selasa">Selasa</option>
 							<option value="Rabu" id="Rabu">Rabu</option>
 							<option value="Kamis" id="Kamis">Kamis</option>
-							<option value="Jum'at" id="Jum'at">Jum'at</option>
+							<option value="Jumat" id="Jumat">Jumat</option>
 							<option value="Sabtu" id="Sabtu">Sabtu</option>
 							<option value="Minggu" id="Minggu">Minggu</option>
 						</select>
