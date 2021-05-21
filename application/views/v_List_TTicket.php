@@ -217,4 +217,15 @@
 			}
 		});
 	}
+
+
+	setInterval(function() {
+		$.ajax({
+			url: "<?= base_url('T_Ticket/CheckTicket') ?>",
+			type: "GET",
+			success: function() {
+				console.log("success");
+			},
+		});
+	}, 60000);
 </script>
