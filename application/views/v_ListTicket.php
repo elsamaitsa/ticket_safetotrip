@@ -38,25 +38,28 @@
  									class="fa fa-sync-alt"></i></button>
  						</div>
  					</div>
- 					<table id="example1" class="table table-sm table-striped font-13">
- 						<thead class="text-center">
- 							<tr>
- 								<th>ID Ticket</th>
- 								<th>Harga Ticket</th>
- 								<th>Nama Type Ticket</th>
- 								<th>Group Days</th>
- 								<th>Wisata</th>
- 								<th>Action</th>
- 							</tr>
- 						</thead>
- 						<tbody class="text-center">
+ 					<!-- <div class="table-responsive"> -->
+ 						<table id="example1" class="table table-sm table-striped font-13 w-100">
+ 							<thead class="text-center">
+ 								<tr>
+ 									<th>ID Ticket</th>
+ 									<th>Harga Ticket</th>
+ 									<th>Nama Type Ticket</th>
+ 									<th>Group Days</th>
+ 									<th>Wisata</th>
+ 									<th>Action</th>
+ 								</tr>
+ 							</thead>
+ 							<tbody class="text-center">
 
- 						</tbody>
+ 							</tbody>
 
- 					</table>
+ 						</table>
+ 					<!-- </div> -->
  				</div>
  				<!-- /.card-body -->
  			</div>
+
  			<!-- /.card -->
  		</div><!-- /.container-fluid -->
  	</section>
@@ -77,13 +80,13 @@
  				<form id="form_ticket">
  					<div class="form-group">
  						<label class="font-15">ID Ticket</label>
- 						<input type="email" class="form-control font-13" value="<?php echo $id;?>" readonly>
-						 <span class="help-block"></span>
+ 						<input type="text" class="form-control font-13" value="<?php echo $id;?>" name="rticket_id" readonly>
+ 						<span class="help-block"></span>
  					</div>
  					<div class="form-group">
  						<label class="font-15">Harga Ticket</label>
- 						<input type="email" class="form-control font-13" placeholder="ex: 30000">
-						 <span class="help-block"></span>
+ 						<input type="text" class="form-control font-13" placeholder="ex: 30000" name="rticket_harga">
+ 						<span class="help-block"></span>
  					</div>
  					<div class="form-group">
  						<label class="font-15">Nama Type Ticket</label>
@@ -94,41 +97,45 @@
  							</option>
  							<?php endforeach;?>
  						</select>
-						 <span class="help-block"></span>
+ 						<span class="help-block"></span>
  					</div>
  					<div class="form-group">
  						<label class="font-15">Group Days</label>
- 						<select class="form-control font-13" name="rmoments_id">
-						 <option value="">No Selected</option>
+ 						<select class="form-control font-13" name="rmoment_id">
+ 							<option value="">No Selected</option>
  							<?php foreach($group as $row):?>
  							<option value="<?php echo $row->rmoment_id;?>"><?php echo $row->rmoment_name;?>
  							</option>
  							<?php endforeach;?>
  						</select>
-						 <span class="help-block"></span>
+ 						<span class="help-block"></span>
  					</div>
  					<div class="form-group">
  						<label class="font-15">Wisata</label>
- 						<input type="email" class="form-control font-13" placeholder="Cari Jadwal">
+ 						<input type="hidden" name="mdestinasi_id">
+ 						<input type="text" class="form-control font-13" name="mdestinasi_nama" id="nama_destinasi"
+ 							placeholder="Cari Jadwal">
  					</div>
-					 <div class="form-group">
-                  <label>Multiple</label>
-                  <select class="select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
-                    <option>Alabama</option>
-                    <option>Alaska</option>
-                    <option>California</option>
-                    <option>Delaware</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Washington</option>
-                  </select>
-                </div>
+ 					<div class="form-group">
+ 						<label>Multiple</label>
+ 						<select class="select2" multiple="multiple" data-placeholder="Select a State"
+ 							style="width: 100%;">
+ 							<option>Alabama</option>
+ 							<option>Alaska</option>
+ 							<option>California</option>
+ 							<option>Delaware</option>
+ 							<option>Tennessee</option>
+ 							<option>Texas</option>
+ 							<option>Washington</option>
+ 						</select>
+ 					</div>
  				</form>
-				 <span id="cek_result"></span>
+ 				<span id="cek_result"></span>
  			</div>
  			<div class="modal-footer justify-content-between">
  				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
- 				<button type="submit" id="btn_simpan" class="btn btn-info"><i class="fa fa-save mr-1"></i>Simpan</button>
+ 				<button type="button" id="btn_simpan" class="btn btn-info"><i
+ 						class="fa fa-save mr-1"></i>Simpan</button>
  			</div>
  		</div>
  		<!-- /.modal-content -->
@@ -188,16 +195,21 @@
  </div>
  <!-- /Modal -->
  <script>
+
+	function reload_table() {
+		table.ajax.reload(null, false); //reload datatable ajax 
+	}
+
  	var save_method; //for save method string
  	var table;
  	$(document).ready(function () {
-		$('.select2').select2();
+ 		$('.select2').select2();
  		//datatables
  		table = $('#example1').DataTable({
- 			"lengthMenu": [
- 				[5, 10, 50, -1],
- 				[10, 25, 50, "All"]
- 			],
+ 			// "lengthMenu": [
+ 			// 	[5, 10, 50, -1],
+ 			// 	[10, 25, 50, "All"]
+ 			// ],
 
  			"processing": true, //Feature control the processing indicator.
  			"serverSide": true, //Feature control DataTables' server-side processing mode.
@@ -217,75 +229,93 @@
 
  		});
 
-		//set input/textarea/select event when change value, remove class error and remove text help block 
-		$("input").change(function () {
-			$(this).parent().parent().removeClass('has-error');
-			$(this).next().empty();
-		});
-	
-		$("select").change(function () {
-			$(this).parent().parent().removeClass('has-error');
-			$(this).next().empty();
-		});
+ 		// autocomplete nama
+ 		$('#nama_destinasi').autocomplete({
+ 			source: "<?php echo site_url('Ticket/get_autocomplete_destinasi');?>",
+ 			select: function (event, ui) {
+ 				$('[name="mdestinasi_nama"]').val(ui.item.label);
+ 				$('[name="mdestinasi_id"]').val(ui.item.mdestinasi_id);
+ 			},
 
-		 $('#btn_simpan').click(function () {
-			$.ajax({
-				type: "POST",
-				url: "<?php echo base_url('Ticket/cek_ticket')?>",
-				data: $('#form_ticket').serialize(),
-				success: function (data) {
-					if (data === "ok") {
-						$('#cek_result').html('<div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-circle"></i> Data Sudah ada, Input Indikator yg lain ya<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-					} else {
-						var url_add = "<?php echo base_url('Ticket/add_ticket')?>";
-						// ajax adding data to database
-						$.ajax({
-							url: url_add,
-							type: "POST",
-							data: $('#form_ticket').serialize(),
-							dataType: "JSON",
-							success: function (data) {
+ 			search: function (event, ui) {
+ 				$(this).addClass('loader');
+ 			},
 
-								if (data
-									.status) //if success close modal and reload ajax table
-								{
-									$('#modal_ticket').modal('hide');
-									reload_table();
-								} else {
-									for (var i = 0; i < data.inputerror
-										.length; i++) {
-										$('[name="' + data.inputerror[i] + '"]')
-											.parent().parent().addClass(
-												'has-error'
-											); //select parent twice to select div form-group class and add has-error class
-										$('[name="' + data.inputerror[i] + '"]')
-											.next().text(data.error_string[
-												i
-											]); //select span help-block class set text error string
-									}
-								}
-								$('#btn_simpan').html('<i class="fa fa-floppy-o mr-1"></i>Saving...'); //change button text
-								$('#btn_simpan').attr('disabled', false); //set button enable 
-								window.location.reload();
-								stay_tab();
+ 			response: function (event, ui) {
+ 				if (ui.content.length === 0) {
+ 					console.log('No result loaded!');
+ 				} else {
+ 					console.log('success!');
+ 				}
 
-							},
-							error: function (jqXHR, textStatus, errorThrown) {
-								alert('Error adding / update data');
-								$('#btn_simpan').text(
-									'save'); //change button text
-								$('#btn_simpan').attr('disabled',
-									false); //set button enable 
+ 				$(this).removeClass('loader');
+ 			}
+ 		});
 
-							}
-						});
-					}
-					// console.log("tuk tuk tuk");
-				}
-			})
-		});
+ 		$('#btn_simpan').click(function () {
+ 			$.ajax({
+ 				type: "POST",
+ 				url: "<?php echo base_url('Ticket/cek_ticket')?>",
+ 				data: $('#form_ticket').serialize(),
+ 				success: function (data) {
+ 					if (data === "ok") {
+ 						$('#cek_result').html(
+ 							'<div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-circle"></i> Data Sudah ada, Input Indikator yg lain ya<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>'
+ 						);
+ 					} else {
+ 						var url_add = "<?php echo base_url('Ticket/add_ticket')?>";
+ 						// ajax adding data to database
+ 						$.ajax({
+ 							url: url_add,
+ 							type: "POST",
+ 							data: $('#form_ticket').serialize(),
+ 							dataType: "JSON",
+ 							success: function (data) {
 
-		
+ 								if (data
+ 									.status
+ 								) //if success close modal and reload ajax table
+ 								{
+ 									$('#modal_ticket').modal('hide');
+ 									reload_table();
+ 								} else {
+ 									for (var i = 0; i < data.inputerror
+ 										.length; i++) {
+ 										$('[name="' + data.inputerror[i] + '"]')
+ 											.parent().parent().addClass(
+ 												'has-error'
+ 											); //select parent twice to select div form-group class and add has-error class
+ 										$('[name="' + data.inputerror[i] + '"]')
+ 											.next().text(data.error_string[
+ 												i
+ 											]); //select span help-block class set text error string
+ 									}
+ 								}
+ 								$('#btn_simpan').html(
+ 									'<i class="fa fa-floppy-o mr-1"></i>Saving...'
+ 								); //change button text
+ 								$('#btn_simpan').attr('disabled',
+ 									false); //set button enable 
+ 								window.location.reload();
+ 								stay_tab();
+
+ 							},
+ 							error: function (jqXHR, textStatus, errorThrown) {
+ 								alert('Error adding / update data');
+ 								$('#btn_simpan').text(
+ 									'save'); //change button text
+ 								$('#btn_simpan').attr('disabled',
+ 									false); //set button enable 
+
+ 							}
+ 						});
+ 					}
+ 					// console.log("tuk tuk tuk");
+ 				}
+ 			})
+ 		});
+
+
  	});
 
  </script>

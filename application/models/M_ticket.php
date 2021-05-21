@@ -83,7 +83,7 @@ class M_ticket extends CI_Model{
 		return $query->row();
 	}
 
-	public function save($data)
+	public function save_ticket($data)
 	{
 		$this->db->insert($this->table, $data);
 		return $this->db->insert_id();
@@ -128,12 +128,21 @@ class M_ticket extends CI_Model{
 		return $query;
 	}
 
-	// function search_nama($sysuser_nama){
-	// 	$this->db->like('sysuser_nama', $sysuser_nama, 'both');
-	// 	$this->db->order_by('sysuser_nama', 'ASC');
-	// 	$this->db->limit(10);
-	// 	return $this->db->get('v_target')->result();
-	// }
+	public function cek_ticket($id, $type, $group, $wisata){
+		$this->db->where('rticket_id', $id);
+		$this->db->where('rvarianticket_id',$type);
+		$this->db->where('rmoment_id',$group);
+		$this->db->where('mdestinasi_id',$wisata);
+		$query = $this->db->get('r_ticket');
+		return $query->num_rows();
+	}
+
+	function search_destinasi($mdestinasi_nama){
+		$this->db->like('mdestinasi_nama', $mdestinasi_nama, 'both');
+		$this->db->order_by('mdestinasi_nama', 'ASC');
+		$this->db->limit(10);
+		return $this->db->get('m_destinasi')->result();
+	}
 
 	// // function getIndikator($rgroup_id){
 	// // 	$query = $this->db->get_where('m_indikator',array('rgroup_id'=>$rgroup_id));

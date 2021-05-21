@@ -351,3 +351,42 @@ div.dataTables_wrapper div.dataTables_filter {
 	padding: 10px 30px;
 	text-align: left;
 }
+
+
+@media (min-width: 992px) {
+
+	.sidebar-mini.sidebar-collapse .main-sidebar,
+	.sidebar-mini.sidebar-collapse .main-sidebar::before {
+		margin-left: 0;
+		width: 3.6rem;
+	}
+
+
+	.sidebar-mini.sidebar-collapse .content-wrapper,
+	.sidebar-mini.sidebar-collapse .main-footer,
+	.sidebar-mini.sidebar-collapse .main-header {
+		margin-left: 3.6rem !important;
+	}
+}
+
+
+.loader {
+	background: url('../../image/loader.gif');
+	background-size: 30px 30px;
+	background-repeat: no-repeat;
+	background-position: right;
+}
+
+ul#ui-id-1 {
+	position: relative;
+	top: -68px;
+	left: 235.5px;
+	z-index: 10000;
+	background: rgb(255, 255, 255);
+	border: 1px solid rgb(192, 192, 192);
+	list-style-type: none;
+	font-size: 13px;
+	border-radius: 5px;
+	width: 36em !important;
+	padding: 8px 15px;
+}

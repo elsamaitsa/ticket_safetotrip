@@ -33,11 +33,10 @@ class Ticket extends CI_Controller {
 			$row[] = $ticket->rvarianticket_id;
 			$row[] = $ticket->rmoment_id;
 			$row[] = $ticket->mdestinasi_id;
-			$row[] = $ticket->rjadwal_id;
 
 			//add html for action
-			$row[] = '<a class="btn btn-sm btn-circle-blue" href="javascript:void(0)" title="Edit" onclick="edit_ticket('."'".$ticket->rticket_id."'".')"><i class="fa fa-edit"></i></a>
-				  <a class="btn btn-sm btn-circle-red" href="javascript:void(0)" title="Hapus" onclick="delete_ticket('."'".$ticket->rticket_id."'".')"><i class="fa fa-trash"></i></a>';
+			$row[] = '<a class="btn btn-outline-info btn-sm" href="javascript:void(0)" title="Edit" onclick="edit_ticket('."'".$ticket->rticket_id."'".')"><i class="fa fa-edit"></i></a>
+				  <a class="btn btn-outline-danger btn-sm" href="javascript:void(0)" title="Hapus" onclick="delete_ticket('."'".$ticket->rticket_id."'".')"><i class="fa fa-trash"></i></a>';
 		
 			$data[] = $row;
 		}
@@ -59,6 +58,21 @@ class Ticket extends CI_Controller {
 	// 	echo json_encode($data);
 	// }
 
+	function get_autocomplete_destinasi(){
+        if(isset($_GET['term'])){
+            $result = $this->ticket->search_destinasi($_GET['term']);
+            if(count($result) > 0){
+                foreach($result as $row)
+                    $arr_result[] = array(
+                        'label' => $row->mdestinasi_nama,
+                        'value' => $row->mdestinasi_nama,
+                        'mdestinasi_id' => $row->mdestinasi_id 
+                    );
+                echo json_encode($arr_result);
+            }
+        }
+    }
+
 	public function cek_ticket(){
 		// $this->_validate();
 		$id = $this->input->post('rticket_id');
@@ -66,23 +80,25 @@ class Ticket extends CI_Controller {
 		$group = $this->input->post('rmoment_id');
 		$wisata = $this->input->post('mdestinasi_id');
 
-		$cek = $this->indikator->cek_ticket($id, $type, $group, $wisata);
+		$cek = $this->ticket->cek_ticket($id, $type, $group, $wisata);
 		if($cek > 0){
 			echo "ok";
 		}
 	}
 
-	// public function add_indikator()
-	// {
-	// 	$this->_validate();
-	// 	$data = array(
-	// 			'mindikator_id' => $this->input->post('mindikator_id'),
-	// 			'mindikator_desk' => $this->input->post('mindikator_desk'),
-	// 			'rgroup_id' => $this->input->post('rgroup_id')
-	// 		);
-	// 	$insert = $this->indikator->save_indikator($data);
-	// 	echo json_encode(array("status" => TRUE));
-	// }
+	public function add_ticket()
+	{
+		// $this->_validate();
+		$data = array(
+				'rticket_id' => $this->input->post('rticket_id'),
+				'rticket_harga' => $this->input->post('rticket_harga'),
+				'rvarianticket_id' => $this->input->post('rvarianticket_id'),
+				'rmoment_id' => $this->input->post('rmoment_id'),
+				'mdestinasi_id' => $this->input->post('mdestinasi_id')
+			);
+		$insert = $this->ticket->save_ticket($data);
+		echo json_encode(array("status" => TRUE));
+	}
 
 	// public function update_indikator()
 	// {
