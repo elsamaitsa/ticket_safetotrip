@@ -102,7 +102,7 @@ class M_ticket extends CI_Model{
 	}
 
 	public function createID(){
-		$this->db->select('RIGHT(r_ticket.rticket_id,1) as id', FALSE);
+		$this->db->select('RIGHT(r_ticket.rticket_id,4) as id', FALSE);
 		$this->db->order_by('rticket_id','DESC');
 		$this->db->limit(1);
 		$query = $this->db->get('r_ticket');
@@ -113,8 +113,8 @@ class M_ticket extends CI_Model{
 			$kode = 1;
 		}
 
-		$kodemax = str_pad($kode,1,"0", STR_PAD_LEFT);
-		$kodejadi = "".$kodemax;
+		$kodemax = str_pad($kode,4,"0", STR_PAD_LEFT);
+		$kodejadi = "TKT".$kodemax;
 		return $kodejadi;
 	}
 

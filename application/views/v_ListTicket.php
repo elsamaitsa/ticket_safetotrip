@@ -77,7 +77,7 @@
  				<form id="form_ticket">
  					<div class="form-group">
  						<label class="font-15">ID Ticket</label>
- 						<input type="email" class="form-control font-13" value="<?php echo $id;?>">
+ 						<input type="email" class="form-control font-13" value="<?php echo $id;?>" readonly>
 						 <span class="help-block"></span>
  					</div>
  					<div class="form-group">
@@ -111,6 +111,18 @@
  						<label class="font-15">Wisata</label>
  						<input type="email" class="form-control font-13" placeholder="Cari Jadwal">
  					</div>
+					 <div class="form-group">
+                  <label>Multiple</label>
+                  <select class="select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
+                    <option>Alabama</option>
+                    <option>Alaska</option>
+                    <option>California</option>
+                    <option>Delaware</option>
+                    <option>Tennessee</option>
+                    <option>Texas</option>
+                    <option>Washington</option>
+                  </select>
+                </div>
  				</form>
 				 <span id="cek_result"></span>
  			</div>
@@ -179,6 +191,7 @@
  	var save_method; //for save method string
  	var table;
  	$(document).ready(function () {
+		$('.select2').select2();
  		//datatables
  		table = $('#example1').DataTable({
  			"lengthMenu": [

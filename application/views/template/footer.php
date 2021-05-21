@@ -45,7 +45,7 @@
 <script src="<?=base_url()?>assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="<?=base_url()?>assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <!-- Select2 -->
-<script src="<?=base_url()?>assets/plugins/select2/js/select2.full.min.js"></script>
+<script src="<?=base_url()?>assets/plugins/select2/js/select2.full.min.js"></script>  
 
 <!-- AdminLTE App -->
 <script src="<?=base_url()?>assets/dist/js/adminlte.js"></script>
