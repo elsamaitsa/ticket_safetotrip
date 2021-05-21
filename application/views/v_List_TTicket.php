@@ -95,7 +95,7 @@
 							<td id="tbooking_no"></td>
 						</tr>
 						<tr>
-							<td>Date Order</td>
+							<td>Date Booking</td>
 							<td id="date_booking"></td>
 						</tr>
 						<td>Date Visited</td>

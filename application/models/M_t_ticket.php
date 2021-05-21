@@ -43,7 +43,7 @@ class M_t_ticket extends CI_model
 
         $date_now = date("Y-m-d");
         $day_now = $daftar_hari[date("l")];
-        $time_now = date("h:i:s");
+        $time_now = date("H:i:s");
 
         $this->db->select('rjadwal_end_time');
         $this->db->where('rjadwal_hari', $day_now);
@@ -51,7 +51,7 @@ class M_t_ticket extends CI_model
 
         $this->db->select('tticket_id');
         $this->db->join('t_booking', 't_booking.tbooking_no = t_ticket.tbooking_no');
-        $this->db->where('tbooking_date_visited', $date_now);
+        $this->db->where('tbooking_date_visited <=', $date_now);
         $this->db->where('tticket_status', 'dipesan');
         $data_ticket = $this->db->get($this->table)->result_array();
 
