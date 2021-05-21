@@ -25,18 +25,28 @@ class T_Ticket extends CI_Controller
 
 	public function Update()
 	{
+		$this->satpam->jaga();
 		$this->M_t_ticket->Update();
 		redirect(site_url('T_Ticket'), 'refresh');
 	}
 
 	public function CheckTicket()
 	{
+		$this->satpam->jaga();
 		$this->M_t_ticket->CheckTicket();
 	}
 
 	public function Delete($tticket_id)
 	{
+		$this->satpam->jaga();
 		$this->M_t_ticket->Delete($tticket_id);
 		redirect(site_url('T_Ticket'), 'refresh');
+	}
+
+	public function Detail($tticket_id)
+	{
+		$detail = $this->M_t_ticket->Detail($tticket_id);
+		$this->output->set_content_type('aplication/json')
+			->set_output(json_encode($detail));
 	}
 }

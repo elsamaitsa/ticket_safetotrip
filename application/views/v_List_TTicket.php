@@ -60,7 +60,7 @@
 										<?php endif ?>
 									</td>
 									<td>
-										<a class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#DetailModal"><i class="fas fa-info-circle"></i></a>
+										<a class="btn btn-outline-success btn-sm" href="javascript:void(0)" onclick="view_modal(<?= $value['tticket_id'] ?>)"><i class="fas fa-info-circle"></i></a>
 										<a class="btn btn-outline-info btn-sm" data-id="<?= $value['tticket_id'] ?>" data-nobook="<?= $value['tbooking_no'] ?>" data-stat="<?= $value['tticket_status'] ?>" data-toggle="modal" data-target="#EditModal"><i class="fa fa-edit"></i></a>
 										<button class="btn btn-outline-danger btn-sm" data-href="<?= site_url('T_Ticket/Delete/' . $value['tticket_id']); ?>" data-toggle="modal" data-target="#HapusModal" title="Hapus"><i class="fa fa-trash"></i></button>
 									</td>
@@ -89,23 +89,22 @@
 			</div>
 			<div class="modal-body">
 				<div class="table-responsive">
-					<table class="table table-sm " cellspacing="0" cellpadding="0" style="border:none">
-						<tr style="font-size:14px;">
+					<table class="table table-sm font-14" cellspacing="0" cellpadding="0" style="border:none">
+						<tr>
 							<td width="100px">Booking No</td>
-							<td id="norek"></td>
+							<td id="tbooking_no"></td>
 						</tr>
-						<tr style="font-size:14px;">
-							<td>Date Order</td>
-							<td id="rtabproduk"></td>
+						<tr>
+							<td>Date Booking</td>
+							<td id="date_booking"></td>
 						</tr>
-						<tr style="font-size:14px;">
-							<td>Date Visited</td>
-							<td id="nama">
-							</td>
+						<td>Date Visited</td>
+						<td id="date_visit"></td>
+						<tr>
 						</tr>
-						<tr style="font-size:14px;">
+						<tr>
 							<td>Status</td>
-							<td id="nama">
+							<td id="stat">
 							</td>
 						</tr>
 					</table>
@@ -200,4 +199,22 @@
 			document.getElementById("nobook").readOnly = true;
 		});
 	});
+
+	function view_modal(tticket_id) {
+		$('#DetailModal').modal('show')
+		$.ajax({
+			url: "<?= site_url('T_Ticket/Detail/') ?>" + tticket_id,
+			type: "GET",
+			dataType: "JSON",
+			success: function(data) {
+				$('#tbooking_no').html(data.tbooking_no);
+				$('#date_booking').html(data.tbooking_date_booking);
+				$('#date_visit').html(data.tbooking_date_visited);
+				$('#stat').html(data.tticket_status);
+			},
+			error: (response) => {
+				console.log(response);
+			}
+		});
+	}
 </script>
