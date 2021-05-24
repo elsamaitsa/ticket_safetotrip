@@ -30,8 +30,7 @@
 				<div class="card-body">
 					<div class="d-flex mb-4">
 						<div>
-							<button class="btn btn-block btn-outline-info btn-sm" data-toggle="modal"
-								data-target="#TambahModal"><i class="fa fa-plus mr-1"></i>Tambah</button>
+							<a href="<?= base_url('Booking/create') ?>" class="btn btn-block btn-outline-info btn-sm"><i class="fa fa-plus mr-1"></i>Tambah</a>
 						</div>
 						<div class="ml-1">
 							<button class="btn btn-block btn-outline-secondary btn-sm" title="Refresh"><i
@@ -52,19 +51,23 @@
 							</tr>
 						</thead>
 						<tbody class="text-center">
-							<td>12323</td>
-							<td>2020/01/02</td>
-							<td>2020/01/02</td>
-							<td>4</td>
-							<td>Rp. 800.000</td>
-							<td>Suherman</td>
-							<td>TKT00001</td>
-							<td>
-								<a class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#EditModal"><i
-										class="fa fa-edit"></i></a>
-								<button class="btn btn-outline-danger btn-sm" data-toggle="modal"
-									data-target="#HapusModal" title="Hapus"><i class="fa fa-trash"></i></button>
-							</td>
+							<?php foreach($booking as $value) : ?>
+								<tr>
+									<td><?= $value['tbooking_no'] ?></td>
+									<td><?= date('d/m/Y', strtotime($value['tbooking_date_booking'])) ?></td>
+									<td><?= date('d/m/Y', strtotime($value['tbooking_date_visited'])) ?></td>
+									<td><?= $value['tbooking_jumlah'] ?></td>
+									<td>Rp. <?= number_format($value['tbooking_total'],0,',',',') ?></td>
+									<td><?= $value['name'] ?></td>
+									<td><?= $value['rticket_id'] ?></td>
+									<td>
+										<a class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#EditModal"><i
+												class="fa fa-edit"></i></a>
+										<button class="btn btn-outline-danger btn-sm" data-toggle="modal"
+											data-target="#HapusModal" title="Hapus"><i class="fa fa-trash"></i></button>
+									</td>
+								</tr>
+							<?php endforeach ?>
 						</tbody>
 					</table>
 				</div>
@@ -75,88 +78,6 @@
 	</section>
 	<!-- /.content -->
 </div>
-<!-- Modal Tambah -->
-<div class="modal fade" id="TambahModal">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header bg-info">
-				<h5 class="modal-title"><i class="fa fa-plus-circle mr-1"></i>Tambah Data</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true"><i class="ico--close"></i></span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<form action="" method="POST" class="form-modal-to-content">
-					<div class="form-group">
-						<label class="font-14">Booking ID</label>
-						<input type="text" class="form-control font-13" placeholder="ID Group">
-					</div>
-                    <div class="form-group">
-						<label class="font-14">Booking No</label>
-						<input type="text" class="form-control font-13" placeholder="No. Booking">
-					</div>
-                    <div class="form-group">
-						<label class="font-14">Nama User</label>
-						<input type="text" class="form-control font-13" placeholder="Ketikkan Nama User">
-					</div>
-                    <div class="form-group">
-						<label class="font-14">Reference Ticket</label>
-						<input type="text" class="form-control font-13" placeholder="Ticket">
-					</div>
-					<div class="row">
-						<div class="col-sm-6 col-md-6">
-							<div class="form-group">
-								<label class="font-14">Tanggal Booking</label>
-								<div class="input-group date" id="bookingdate" data-target-input="nearest">
-									<input type="text" class="form-control datetimepicker-input font-13"
-										data-target="#bookingdate" />
-									<div class="input-group-append" data-target="#bookingdate"
-										data-toggle="datetimepicker">
-										<div class="input-group-text font-13"><i class="fa fa-calendar"></i></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-6 col-md-6">
-                        <div class="form-group">
-								<label class="font-14">Tanggal Visit</label>
-								<div class="input-group date" id="visitdate" data-target-input="nearest">
-									<input type="text" class="form-control datetimepicker-input font-13"
-										data-target="#visitdate" />
-									<div class="input-group-append" data-target="#visitdate"
-										data-toggle="datetimepicker">
-										<div class="input-group-text font-13"><i class="fa fa-calendar"></i></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-                    <div class="row">
-						<div class="col-sm-4 col-md-4">
-							<div class="form-group">
-								<label class="font-14">Jumlah</label>
-								<input type="text" class="form-control font-13" placeholder="Jumlah Ticket">
-							</div>
-						</div>
-						<div class="col-sm-8 col-md-8">
-							<div class="form-group">
-								<label class="font-14">Total</label>
-                                <input type="text" class="form-control font-13" placeholder="Total">
-							</div>
-						</div>
-					</div>
-					<div class="modal-footer justify-content-between">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-info"><i class="fa fa-save mr-1"></i>Simpan</button>
-					</div>
-				</form>
-			</div>
-		</div>
-		<!-- /.modal-content -->
-	</div>
-	<!-- /.modal-dialog -->
-</div>
-<!-- /Modal -->
 
 <!-- Modal Edit -->
 <div class="modal fade" id="EditModal">
@@ -264,12 +185,9 @@
 
 <script>
 	$(document).ready(function () {
-		$('#bookingdate').datetimepicker({
-			format: 'L'
-		});
-        $('#visitdate').datetimepicker({
-			format: 'L'
+		table = $("#example1").DataTable({
+			"responsive": true,
+			"autoWidth": false,
 		});
 	});
-
 </script>
