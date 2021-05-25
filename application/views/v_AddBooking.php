@@ -1,7 +1,7 @@
 <!-- Content Wrapper. Contains page content -->
 <style>
 	.ui-autocomplete {
-		z-index:2147483647;
+		z-index: 2147483647;
 		display: inline-block;
 		min-height: 100%;
 		max-height: 200px;
@@ -11,10 +11,11 @@
 		border: 1px solid #C8BFC4;
 		border-radius: 4px;
 		box-shadow: inset 1px 1px 2px #ddd8dc;
-		background: #fff; 
+		background: #fff;
 		overflow-y: scroll;
 		list-style-type: none;
 	}
+
 </style>
 
 <div class="content-wrapper">
@@ -46,74 +47,88 @@
 				</div>
 				<!-- /.card-header -->
 				<div class="card-body">
-                    <form action="<?= base_url('Booking/create') ?>" method="POST">
-                        <div class="row">
+					<form action="<?= base_url('Booking/create') ?>" method="POST">
+						<div class="row">
 							<div class="col-sm-7 col-md-7">
 								<div class="form-group">
 									<label class="font-14">Tempat Wisata</label>
-									<input type="text" class="form-control font-13 title" id="rticket_id" placeholder="Ticket" required>
+									<input type="text" class="form-control font-13 title" id="rticket_id"
+										placeholder="Ticket" required>
 									<input type="text" id="id_ticket" name="rticket_id" hidden>
 								</div>
 							</div>
-                            <div class="col-sm-2 col-md-2">
-                                <div class="form-group">
-                                    <label class="font-14">Jumlah Ticket</label>
-                                    <input type="text" name="tbooking_jumlah" class="form-control font-13 angka" id="jumlah" autocomplete="off" required>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 col-md-3">
-                                <div class="form-group">
-                                    <label class="font-14">Total Biaya</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">Rp.</span>
-                                        </div>
-                                        <input type="text" class="form-control font-13 angka" name="tbooking_total" id="total" readonly>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="font-14">No Booking</label>
-                            <input type="text" name="tbooking_no" id="no_booking" class="form-control font-13" value="<?= set_value('tbooking_no') ?>" autocomplete="off">
-                        </div>
-                        <!-- <div class="form-group">
+							<div class="col-sm-2 col-md-2">
+								<div class="form-group">
+									<label class="font-14">Jumlah Ticket</label>
+									<!-- <input type="text" name="tbooking_jumlah" class="form-control font-13 angka"
+										id="jumlah" autocomplete="off" required> -->
+									<input tjumlah" name="tbooking_jumlah" min="1" max="32" class="form-control font-13 angka"
+										id="jumlah" autocomplete="off"
+										onkeydown="javascript: return event.keyCode == 69 ? false : true"
+										placeholder="2" required tabindex="6">
+								</div>
+							</div>
+							<div class="col-sm-3 col-md-3">
+								<div class="form-group">
+									<label class="font-14">Total Biaya</label>
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text">Rp.</span>
+										</div>
+										<input type="text" class="form-control font-13 angka" name="tbooking_total"
+											id="total" readonly>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="container"></div>
+						<div class="form-group">
+							<label class="font-14">No Booking</label>
+							<input type="text" name="tbooking_no" id="no_booking" class="form-control font-13"
+								value="<?= set_value('tbooking_no') ?>" autocomplete="off">
+						</div>
+						<!-- <div class="form-group">
                             <label class="font-14">Nama User</label>
                             <input type="text" class="form-control font-13" placeholder="Ketikkan Nama User">
                         </div> -->
-                        <div class="row">
-                            <div class="col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    <label class="font-14">Tanggal Booking</label>
-                                    <div class="input-group date" id="bookingdate" data-target-input="nearest">
-                                        <input type="text" name="tbooking_date_booking" class="form-control datetimepicker-input font-13"
-                                            data-target="#bookingdate" value="<?= set_value('tbooking_date_booking') ?>" required autocomplete="off"/>
-                                        <div class="input-group-append" data-target="#bookingdate"
-                                            data-toggle="datetimepicker">
-                                            <div class="input-group-text font-13"><i class="fa fa-calendar"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-6">
-                            <div class="form-group">
-                                    <label class="font-14">Tanggal Visit</label>
-                                    <div class="input-group date" id="visitdate" data-target-input="nearest">
-                                        <input type="text" name="tbooking_date_visited" class="form-control datetimepicker-input font-13"
-                                            data-target="#visitdate" value="<?= set_value('tbooking_date_visited') ?>" required autocomplete="off"/>
-                                        <div class="input-group-append" data-target="#visitdate"
-                                            data-toggle="datetimepicker">
-                                            <div class="input-group-text font-13"><i class="fa fa-calendar"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
+						<div class="row">
+							<div class="col-sm-6 col-md-6">
+								<div class="form-group">
+									<label class="font-14">Tanggal Booking</label>
+									<div class="input-group date" id="bookingdate" data-target-input="nearest">
+										<input type="text" name="tbooking_date_booking"
+											class="form-control datetimepicker-input font-13" data-target="#bookingdate"
+											value="<?= set_value('tbooking_date_booking') ?>" required
+											autocomplete="off" />
+										<div class="input-group-append" data-target="#bookingdate"
+											data-toggle="datetimepicker">
+											<div class="input-group-text font-13"><i class="fa fa-calendar"></i></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6 col-md-6">
+								<div class="form-group">
+									<label class="font-14">Tanggal Visit</label>
+									<div class="input-group date" id="visitdate" data-target-input="nearest">
+										<input type="text" name="tbooking_date_visited"
+											class="form-control datetimepicker-input font-13" data-target="#visitdate"
+											value="<?= set_value('tbooking_date_visited') ?>" required
+											autocomplete="off" />
+										<div class="input-group-append" data-target="#visitdate"
+											data-toggle="datetimepicker">
+											<div class="input-group-text font-13"><i class="fa fa-calendar"></i></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card-footer">
 							<a href="<?= base_url('Booking') ?>" class="btn btn-default">CLose</a>
-                            <button type="submit" class="btn btn-info float-right"><i class="fa fa-save mr-1"></i>Simpan</button>
-                        </div>
-                        </form>
+							<button type="submit" class="btn btn-info float-right"><i
+									class="fa fa-save mr-1"></i>Simpan</button>
+						</div>
+					</form>
 				</div>
 				<!-- /.card-body -->
 			</div>
@@ -124,33 +139,50 @@
 </div>
 <script>
 	$(document).ready(function () {
+		$('#jumlah').on('change keyup', function () {
+			let inputs = '';
+			let value = parseInt($(this).val());
+			for (let i = 1; i <= value; i++) {
+				// inputs += '<input autocomlete="off" type="text" id="server_name${i+1}" value="' + i +
+				// 	'" name="server_name${i+1}" maxlength="8" tabindex="${i+6+1}" required /></br>';
+				inputs +=  '<div class="row mb-3">' +
+			'<div class="col-sm-3 col-md-3"><input type="text" class="form-control font-13" value="'+ i + '" placeholder="No. Booking"></div>' +
+			'<div class="col-sm-3 col-md-3"><input type="text" class="form-control font-13" value="'+ i + '"><input type="text" class="form-control font-13" placeholder="Nama Pengunjung"></div>' +
+			'<div class="col-sm-3 col-md-3"><input type="text" class="form-control font-13" placeholder="Nomor HP"></div>' +
+			'<div class="col-sm-3 col-md-3"><input type="text" class="form-control font-13" placeholder="Email (ex: ex@wisata.com)"></div>' +
+			'</div>';
+			}
+			$('#container').html(inputs)
+		});
+
+
 		$('#bookingdate').datetimepicker({
 			format: 'YYYY-MM-DD',
 		})
-        $('#visitdate').datetimepicker({
+		$('#visitdate').datetimepicker({
 			format: 'YYYY-MM-DD',
 		});
 
-		$('.angka').on("keypress keyup blur",function (event) { 
-            $(this).val($(this).val().replace(/[^\d].+/, ""));
-            if ((event.which < 48 || event.which > 57)) {
-                event.preventDefault();
-            }
-        });
+		$('.angka').on("keypress keyup blur", function (event) {
+			$(this).val($(this).val().replace(/[^\d].+/, ""));
+			if ((event.which < 48 || event.which > 57)) {
+				event.preventDefault();
+			}
+		});
 
 		$('.title').autocomplete({
 			source: "<?php echo site_url('Booking/get_autocomplete/?');?>",
 			select: function (event, ui) {
-				$('#title').val(ui.item.label); 
+				$('#title').val(ui.item.label);
 				$('#id_ticket').val(ui.item.rticket_id);
-            }
+			}
 		});
-		
+
 		$("#jumlah, #rticket_id").on('change keyup', function () {
 			var id_ticket = document.getElementById('id_ticket').value;
 			var jumlah = document.getElementById('jumlah').value;
-			
-			if(id_ticket && jumlah){
+
+			if (id_ticket && jumlah) {
 				$.ajax({
 					url: "<?= base_url('Booking/totalBiaya/') ?>" + id_ticket,
 					type: "GET",
@@ -170,7 +202,7 @@
 
 						date_booking = d + m + y + h + i + s + '01';
 						$('#no_booking').val(date_booking);
-						
+
 					},
 					error: (response) => {
 						console.log(response);
@@ -180,10 +212,12 @@
 		});
 	});
 
+
 	function addZero(i) {
 		if (i < 10) {
 			i = "0" + i;
 		}
 		return i;
 	}
+
 </script>
