@@ -63,9 +63,7 @@
 									<!-- <input type="text" name="tbooking_jumlah" class="form-control font-13 angka"
 										id="jumlah" autocomplete="off" required> -->
 									<input tjumlah" name="tbooking_jumlah" min="1" max="32" class="form-control font-13 angka"
-										id="jumlah" autocomplete="off"
-										onkeydown="javascript: return event.keyCode == 69 ? false : true"
-										placeholder="2" required tabindex="6">
+										id="jumlah" autocomplete="off" onkeydown="javascript: return event.keyCode == 69 ? false : true" placeholder="Jumlah" required tabindex="6">
 								</div>
 							</div>
 							<div class="col-sm-3 col-md-3">
@@ -82,11 +80,11 @@
 							</div>
 						</div>
 						<div id="container"></div>
-						<div class="form-group">
+						<!-- <div class="form-group">
 							<label class="font-14">No Booking</label>
 							<input type="text" name="tbooking_no" id="no_booking" class="form-control font-13"
 								value="<?= set_value('tbooking_no') ?>" autocomplete="off">
-						</div>
+						</div> -->
 						<!-- <div class="form-group">
                             <label class="font-14">Nama User</label>
                             <input type="text" class="form-control font-13" placeholder="Ketikkan Nama User">
@@ -124,8 +122,8 @@
 							</div>
 						</div>
 						<div class="card-footer">
-							<a href="<?= base_url('Booking') ?>" class="btn btn-default">CLose</a>
-							<button type="submit" class="btn btn-info float-right"><i
+							<a href="<?= base_url('Booking') ?>" class="btn btn-sm btn-default">CLose</a>
+							<button type="submit" class="btn btn-sm btn-info float-right"><i
 									class="fa fa-save mr-1"></i>Simpan</button>
 						</div>
 					</form>
@@ -140,14 +138,18 @@
 <script>
 	$(document).ready(function () {
 		$('#jumlah').on('change keyup', function () {
+			
 			let inputs = '';
 			let value = parseInt($(this).val());
 			for (let i = 1; i <= value; i++) {
 				// inputs += '<input autocomlete="off" type="text" id="server_name${i+1}" value="' + i +
 				// 	'" name="server_name${i+1}" maxlength="8" tabindex="${i+6+1}" required /></br>';
+				// let id="203032032";
+				$('#book').val('30000');
+				
 				inputs +=  '<div class="row mb-3">' +
-			'<div class="col-sm-3 col-md-3"><input type="text" class="form-control font-13" value="'+ i + '" placeholder="No. Booking"></div>' +
-			'<div class="col-sm-3 col-md-3"><input type="text" class="form-control font-13" value="'+ i + '"><input type="text" class="form-control font-13" placeholder="Nama Pengunjung"></div>' +
+			'<div class="col-sm-3 col-md-3"><input type="text" class="form-control font-13" value="20210521'+i+'" placeholder="No. Booking"></div>' +
+			'<div class="col-sm-3 col-md-3"><input type="text" class="form-control font-13" value="VST001'+ i + '"><input type="text" class="form-control font-13" placeholder="Nama Pengunjung"></div>' +
 			'<div class="col-sm-3 col-md-3"><input type="text" class="form-control font-13" placeholder="Nomor HP"></div>' +
 			'<div class="col-sm-3 col-md-3"><input type="text" class="form-control font-13" placeholder="Email (ex: ex@wisata.com)"></div>' +
 			'</div>';
@@ -192,16 +194,16 @@
 						var total = parseInt(input).toLocaleString();
 						$('#total').val(total);
 
-						var date_booking = new Date();
-						var d = String(date_booking.getDate()).padStart(2, '0');
-						var m = String(date_booking.getMonth() + 1).padStart(2, '0');
-						var y = date_booking.getFullYear();
-						var h = addZero(date_booking.getHours());
-						var i = addZero(date_booking.getMinutes());
-						var s = addZero(date_booking.getSeconds());
+						// var date_booking = new Date();
+						// var d = String(date_booking.getDate()).padStart(2, '0');
+						// var m = String(date_booking.getMonth() + 1).padStart(2, '0');
+						// var y = date_booking.getFullYear();
+						// var h = addZero(date_booking.getHours());
+						// var i = addZero(date_booking.getMinutes());
+						// var s = addZero(date_booking.getSeconds());
 
-						date_booking = d + m + y + h + i + s + '01';
-						$('#no_booking').val(date_booking);
+						// date_booking = d + m + y + h + i + s + '01';
+						// $('#no_booking').val(date_booking);
 
 					},
 					error: (response) => {
