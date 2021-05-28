@@ -85,19 +85,21 @@
 							<input type="text" name="tbooking_no" id="no_booking" class="form-control font-13"
 								value="<?= set_value('tbooking_no') ?>" autocomplete="off">
 						</div> -->
-						<!-- <div class="form-group">
-                            <label class="font-14">Nama User</label>
-                            <input type="text" class="form-control font-13" placeholder="Ketikkan Nama User">
-                        </div> -->
 						<div class="row">
-							<div class="col-sm-6 col-md-6">
+							<div class="col-sm-4 col-md-4">
+								<div class="form-group">
+									<label class="font-14">Nama User</label>
+									<input type="text" class="form-control font-13 nama_user" id="nama_user" required>
+									<input type="text" id="id_user" name="userId" hidden>
+								</div>
+							</div>
+							<div class="col-sm-4 col-md-4">
 								<div class="form-group">
 									<label class="font-14">Tanggal Booking</label>
 									<div class="input-group date" id="bookingdate" data-target-input="nearest">
 										<input type="text" name="tbooking_date_booking"
 											class="form-control datetimepicker-input font-13" data-target="#bookingdate"
-											value="<?= set_value('tbooking_date_booking') ?>" required
-											autocomplete="off" />
+											required autocomplete="off" />
 										<div class="input-group-append" data-target="#bookingdate"
 											data-toggle="datetimepicker">
 											<div class="input-group-text font-13"><i class="fa fa-calendar"></i></div>
@@ -105,14 +107,12 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-sm-6 col-md-6">
+							<div class="col-sm-4 col-md-4">
 								<div class="form-group">
 									<label class="font-14">Tanggal Visit</label>
 									<div class="input-group date" id="visitdate" data-target-input="nearest">
 										<input type="text" name="tbooking_date_visited"
-											class="form-control datetimepicker-input font-13" data-target="#visitdate"
-											value="<?= set_value('tbooking_date_visited') ?>" required
-											autocomplete="off" />
+											class="form-control datetimepicker-input font-13" data-target="#visitdate" required autocomplete="off" />
 										<div class="input-group-append" data-target="#visitdate"
 											data-toggle="datetimepicker">
 											<div class="input-group-text font-13"><i class="fa fa-calendar"></i></div>
@@ -148,10 +148,10 @@
 				$('#book').val('30000');
 				
 				inputs +=  '<div class="row mb-3">' +
-			'<div class="col-sm-3 col-md-3"><input type="text" class="form-control font-13" value="20210521'+i+'" placeholder="No. Booking"></div>' +
-			'<div class="col-sm-3 col-md-3"><input type="text" class="form-control font-13" value="VST001'+ i + '"><input type="text" class="form-control font-13" placeholder="Nama Pengunjung"></div>' +
-			'<div class="col-sm-3 col-md-3"><input type="text" class="form-control font-13" placeholder="Nomor HP"></div>' +
-			'<div class="col-sm-3 col-md-3"><input type="text" class="form-control font-13" placeholder="Email (ex: ex@wisata.com)"></div>' +
+			'<div class="col-sm-3 col-md-3"><input type="text" class="form-control font-13" name="tbooking_no[input][]" value="20210521'+i+'" placeholder="No. Booking"></div>' +
+			'<div class="col-sm-3 col-md-3"><input type="text" class="form-control font-13" name="visitors_id[input][]" value="VST001'+ i + '"><input type="text" class="form-control font-13" name="visitors_nama[input][]" placeholder="Nama Pengunjung" required></div>' +
+			'<div class="col-sm-3 col-md-3"><input type="text" class="form-control font-13" name="visitors_nohp[input][]" placeholder="Nomor HP" required ></div>' +
+			'<div class="col-sm-3 col-md-3"><input type="email" class="form-control font-13" name="visitors_email[input][]" placeholder="Email (ex: ex@wisata.com)" required ></div>' +
 			'</div>';
 			}
 			$('#container').html(inputs)
@@ -159,6 +159,7 @@
 
 
 		$('#bookingdate').datetimepicker({
+			defaultDate: new Date(),
 			format: 'YYYY-MM-DD',
 		})
 		$('#visitdate').datetimepicker({
@@ -190,8 +191,7 @@
 					type: "GET",
 					dataType: "JSON",
 					success: (response) => {
-						var input = jumlah * (response.rticket_harga);
-						var total = parseInt(input).toLocaleString();
+						var total = jumlah * (response.rticket_harga);
 						$('#total').val(total);
 
 						// var date_booking = new Date();
@@ -213,13 +213,5 @@
 			}
 		});
 	});
-
-
-	function addZero(i) {
-		if (i < 10) {
-			i = "0" + i;
-		}
-		return i;
-	}
 
 </script>

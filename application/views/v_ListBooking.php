@@ -46,6 +46,7 @@
 								<th>Jumlah</th>
 								<th>Total Biaya</th>
 								<th>Nama User</th>
+								<th>Nama Pengunjung</th>
 								<th>Ticket ID</th>
 								<th>Action</th>
 							</tr>
@@ -59,9 +60,10 @@
 									<td><?= $value['tbooking_jumlah'] ?></td>
 									<td>Rp. <?= number_format($value['tbooking_total'],0,',',',') ?></td>
 									<td><?= $value['name'] ?></td>
+									<td><?= $value['rvisitors_nama'] ?></td>
 									<td><?= $value['rticket_id'] ?></td>
 									<td>
-										<a class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#EditModal"><i
+										<a href="javascript:void(0)" onclick="view_modal(<?= $value['tbooking_id'] ?>)"class="btn btn-outline-info btn-sm"><i
 												class="fa fa-edit"></i></a>
 										<button class="btn btn-outline-danger btn-sm" data-toggle="modal"
 											data-target="#HapusModal" title="Hapus"><i class="fa fa-trash"></i></button>
@@ -91,12 +93,12 @@
 			</div>
 			<div class="modal-body">
             <form action="" method="POST" class="form-modal-to-content">
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<label class="font-14">Booking ID</label>
 						<input type="text" class="form-control font-13" placeholder="ID Group">
-					</div>
+					</div> -->
                     <div class="form-group">
-						<label class="font-14">Booking No</label>
+						<label class="font-14">No Booking</label>
 						<input type="text" class="form-control font-13" placeholder="No. Booking">
 					</div>
                     <div class="form-group">
@@ -104,7 +106,7 @@
 						<input type="text" class="form-control font-13" placeholder="Ketikkan Nama User">
 					</div>
                     <div class="form-group">
-						<label class="font-14">Reference Ticket</label>
+						<label class="font-14">Tiket Wisata</label>
 						<input type="text" class="form-control font-13" placeholder="Ticket">
 					</div>
 					<div class="row">
@@ -138,13 +140,13 @@
                     <div class="row">
 						<div class="col-sm-4 col-md-4">
 							<div class="form-group">
-								<label class="font-14">Jumlah</label>
+								<label class="font-14">Jumlah Ticket</label>
 								<input type="text" class="form-control font-13" placeholder="Jumlah Ticket">
 							</div>
 						</div>
 						<div class="col-sm-8 col-md-8">
 							<div class="form-group">
-								<label class="font-14">Total</label>
+								<label class="font-14">Total Biaya</label>
                                 <input type="text" class="form-control font-13" placeholder="Total">
 							</div>
 						</div>
@@ -190,4 +192,19 @@
 			"autoWidth": false,
 		});
 	});
+
+	function view_modal(tbooking_id) {
+		$('#EditModal').modal('show');
+		$.ajax({
+			url: "<?= base_url('Booking/edit/') ?>" + tbooking_id,
+			type: "GET",
+			dataType: "JSON",
+			succes: (response) => {
+				console.log(response);
+			},
+			error: (response) => {
+				console.log(response);
+			}
+		});
+	}
 </script>
