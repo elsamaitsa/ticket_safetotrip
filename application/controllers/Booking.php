@@ -12,6 +12,7 @@ class Booking extends CI_Controller {
 	public function index()
 	{
 		$data['booking'] = $this->M_booking->get_booking()->result_array();
+		$data['id'] = $this->M_booking->createID();
 		$this->load->view('template/header');
 		$this->load->view('template/navbar');
 		$this->load->view('template/sidebar');

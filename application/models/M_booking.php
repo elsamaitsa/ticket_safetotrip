@@ -79,4 +79,23 @@ class M_booking extends CI_Model
 		$this->db->limit(10);
 		return $this->db->get('sys_users')->result();
 	}
+
+    public function createID(){
+		$this->db->select('RIGHT(.tbooking_no,4) as id', FALSE);
+		$this->db->order_by('tbooking_no','DESC');
+		$this->db->limit(1);
+		$query = $this->db->get('t_booking');
+		if($query->num_rows() <> 0){
+			$data = $query->row();
+			$kode = intval($data->id) + 1;
+		}else{
+			$kode = 1;
+		}
+
+        $date = new \Datetime('now');
+
+		$kodemax = str_pad($kode,4,"0", STR_PAD_LEFT);
+		$kodejadi = $date.$kodemax;
+		return $kodejadi;
+	}
 }

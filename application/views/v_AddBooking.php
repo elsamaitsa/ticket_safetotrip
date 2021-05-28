@@ -1,5 +1,5 @@
 <!-- Content Wrapper. Contains page content -->
-<style>
+<!-- <style>
 	.ui-autocomplete {
 		z-index: 2147483647;
 		display: inline-block;
@@ -16,7 +16,7 @@
 		list-style-type: none;
 	}
 
-</style>
+</style> -->
 
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
@@ -49,7 +49,7 @@
 				<div class="card-body">
 					<form action="<?= base_url('Booking/create') ?>" method="POST">
 						<div class="row">
-							<div class="col-sm-7 col-md-7">
+							<div class="col-sm-6 col-md-6">
 								<div class="form-group">
 									<label class="font-14">Tempat Wisata</label>
 									<input type="text" class="form-control font-13 title" id="rticket_id"
@@ -57,7 +57,7 @@
 									<input type="text" id="id_ticket" name="rticket_id" hidden>
 								</div>
 							</div>
-							<div class="col-sm-2 col-md-2">
+							<div class="col-sm-3 col-md-3">
 								<div class="form-group">
 									<label class="font-14">Jumlah Ticket</label>
 									<!-- <input type="text" name="tbooking_jumlah" class="form-control font-13 angka"
@@ -86,14 +86,14 @@
 								value="<?= set_value('tbooking_no') ?>" autocomplete="off">
 						</div> -->
 						<div class="row">
-							<div class="col-sm-4 col-md-4">
+							<div class="col-sm-6 col-md-6">
 								<div class="form-group">
 									<label class="font-14">Nama User</label>
 									<input type="text" class="form-control font-13 nama_user" id="nama_user" required>
 									<input type="hidden" id="id_user" name="userId">
 								</div>
 							</div>
-							<div class="col-sm-4 col-md-4">
+							<div class="col-sm-3 col-md-3">
 								<div class="form-group">
 									<label class="font-14">Tanggal Booking</label>
 									<div class="input-group date" id="bookingdate" data-target-input="nearest">
@@ -107,7 +107,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-sm-4 col-md-4">
+							<div class="col-sm-3 col-md-3">
 								<div class="form-group">
 									<label class="font-14">Tanggal Visit</label>
 									<div class="input-group date" id="visitdate" data-target-input="nearest">
@@ -122,7 +122,7 @@
 							</div>
 						</div>
 						<div class="card-footer">
-							<a href="<?= base_url('Booking') ?>" class="btn btn-sm btn-default">CLose</a>
+							<a href="<?= base_url('Booking') ?>" class="btn btn-sm btn-default">Close</a>
 							<button type="submit" class="btn btn-sm btn-info float-right"><i
 									class="fa fa-save mr-1"></i>Simpan</button>
 						</div>
