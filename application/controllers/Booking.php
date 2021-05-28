@@ -24,7 +24,7 @@ class Booking extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->helper('form');
 
-		$this->form_validation->set_rules('rticket_id', 'Tempat Wisata', 'required');
+        $this->form_validation->set_rules('rticket_id', 'Ticket Wisata', 'required');
         $this->form_validation->set_rules('tbooking_jumlah', 'Jumlah Ticket', 'required');
         $this->form_validation->set_rules('tbooking_total', 'Total Biaya', 'required');
         $this->form_validation->set_rules('tbooking_date_booking', 'Tanggal Booking', 'required');
@@ -37,30 +37,43 @@ class Booking extends CI_Controller {
 			$this->load->view('v_AddBooking');
 			$this->load->view('template/footer');
 		}else{
-			$total = $this->input->post('tbooking_total');
-			$tbooking_total = preg_replace("/[^0-9]/","",$total);
+			$visitors_id = $this->input->post('visitors_id');
+			$visitors_nama = $this->input->post('visitors_nama');
+			$visitors_nohp = $this->input->post('visitors_nohp');
+			$visitors_email = $this->input->post('visitors_email');
+			$rticket_id = $this->input->post('rticket_id');
+			$tbooking_no = $this->input->post('tbooking_no');
+			$tbooking_total = $this->input->post('tbooking_total');
+			$tbooking_jumlah = $this->input->post('tbooking_jumlah');
+			$tbooking_date_visited = $this->input->post('tbooking_date_visited');
+			$tbooking_date_booking = $this->input->post('tbooking_date_booking');
 
-			$set = [
-				'rticket_id' => $this->input->post('rticket_id'),
-				'tbooking_no' => $this->input->post('tbooking_no'),
-				'tbooking_jumlah' => $this->input->post('tbooking_jumlah'),
-				'tbooking_total' => $tbooking_total,
-				'tbooking_date_booking' => $this->input->post('tbooking_date_booking'),
-				'tbooking_date_visited' => $this->input->post('tbooking_date_visited'),
-				'sysuser_id' =>$this->session->userdata('userId'),
-			];
-			$this->M_booking->save($set);
+			for ($i = 0; $i < $tbooking_jumlah; $i++) { 
+				$visitors[] = [
+					'rvisitors_id' => $visitors_id['input'][$i],
+					'rvisitors_nama' => $visitors_nama['input'][$i],
+					'rvisitors_nohp' => $visitors_nohp['input'][$i],
+					'rvisitors_email' => $visitors_email['input'][$i],
+				];
 
-			$jumlah = $this->input->post('tbooking_jumlah');
-            $no_booking = $this->input->post('tbooking_no');
-			for($i = 0; $i < $jumlah; $i++){
-				$transaksi[$i] = [
-					'tbooking_no' => $no_booking++
+				$booking[] = [
+					'tbooking_no' => $tbooking_no['input'][$i],
+					'tbooking_date_booking' => $tbooking_date_booking,
+					'tbooking_date_visited' => $tbooking_date_visited,
+					'tbooking_jumlah' => $tbooking_jumlah,
+					'tbooking_total' => $tbooking_total,
+					'sysuser_id' => $this->session->userdata('userId'),
+					'rticket_id' => $rticket_id,
+					'rvisitors_id' => $visitors_id['input'][$i],
+				];
+
+				$transaksi[] = [
+					'tbooking_no' => $tbooking_no['input'][$i],
 				];
 			}
-			if (!empty($transaksi)) {
-				$this->db->insert_batch('t_ticket', $transaksi);
-			}
+			$this->M_booking->save_batch_visitors($visitors);
+			$this->M_booking->save_batch_booking($booking);
+			$this->M_booking->save_batch_ticket($transaksi);
 			redirect('Booking', 'refresh');
 		}
 	}
@@ -71,7 +84,7 @@ class Booking extends CI_Controller {
             if (count($result) > 0) {
             foreach ($result as $row)
 				$arr_result[] = array(
-                    'label'         => $row->rticket_id . ' - ' . $row->mdestinasi_nama . ' - ' . $row->rvarianticket_nama,
+                    'label'         => $row->rticket_id . ' - ' . $row->mdestinasi_nama . ' - ' . $row->rvarianticket_nama . ' - ' . $row->rmoment_name,
                     'rticket_id'   => $row->rticket_id,
              	);
 			 	echo json_encode($arr_result);

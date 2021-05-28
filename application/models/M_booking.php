@@ -35,6 +35,12 @@ class M_booking extends CI_Model
         return $this->db->get('v_r_ticket')->result();
     }
 
+    function search_users($title){
+        $this->db->like('name', $title , 'both');
+        $this->db->order_by('userId', 'ASC');
+        return $this->db->get('sys_users')->result();
+    }
+
     public function get_ticket($id)
     {
         $this->db->select('rticket_id, mdestinasi_nama, rticket_harga, rvarianticket_nama');
@@ -46,8 +52,24 @@ class M_booking extends CI_Model
 
     public function get_booking()
     {
-        $this->db->join('sys_user', 'sys_user.userId = t_booking.sysuser_id');
+        $this->db->join('r_visitors', 'r_visitors.rvisitors_id = t_booking.rvisitors_id');
+        $this->db->join('sys_users', 'sys_users.userId = t_booking.sysuser_id');
         $this->db->join('r_ticket', 'r_ticket.rticket_id = t_booking.rticket_id');
 		return $this->db->get($this->table);
+    }
+
+    public function save_batch_visitors($data)
+    {
+        return $this->db->insert_batch('r_visitors', $data);
+    }
+    
+    public function save_batch_booking($data)
+    {
+        return $this->db->insert_batch('t_booking', $data);
+    }
+
+    public function save_batch_ticket($data)
+    {
+        return $this->db->insert_batch('t_ticket', $data);
     }
 }
