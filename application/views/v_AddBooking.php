@@ -138,23 +138,22 @@
 <script>
 	$(document).ready(function () {
 		$('#jumlah').on('change keyup', function () {
-			
+			var number_id = $('#no_booking').val();
 			let inputs = '';
 			let value = parseInt($(this).val());
 			for (let i = 1; i <= value; i++) {
 				// inputs += '<input autocomlete="off" type="text" id="server_name${i+1}" value="' + i +
 				// 	'" name="server_name${i+1}" maxlength="8" tabindex="${i+6+1}" required /></br>';
 				// let id="203032032";
-				$('#book').val('30000');
-				
+								
 				inputs +=  '<div class="row mb-3">' +
-			'<div class="col-sm-3 col-md-3"><input type="text" class="form-control font-13" value="20210521'+i+'" placeholder="No. Booking"></div>' +
+			'<div class="col-sm-3 col-md-3"><input type="text" class="form-control font-13" id="#no_booking" placeholder="No. Booking"></div>' +
 			'<div class="col-sm-3 col-md-3"><input type="text" class="form-control font-13" value="VST001'+ i + '"><input type="text" class="form-control font-13" placeholder="Nama Pengunjung"></div>' +
 			'<div class="col-sm-3 col-md-3"><input type="text" class="form-control font-13" placeholder="Nomor HP"></div>' +
 			'<div class="col-sm-3 col-md-3"><input type="text" class="form-control font-13" placeholder="Email (ex: ex@wisata.com)"></div>' +
 			'</div>';
 			}
-			$('#container').html(inputs)
+			$('#container').html(inputs);
 		});
 
 
