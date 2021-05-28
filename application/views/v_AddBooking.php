@@ -90,7 +90,7 @@
 								<div class="form-group">
 									<label class="font-14">Nama User</label>
 									<input type="text" class="form-control font-13 nama_user" id="nama_user" required>
-									<input type="text" id="id_user" name="userId" hidden>
+									<input type="hidden" id="id_user" name="userId">
 								</div>
 							</div>
 							<div class="col-sm-4 col-md-4">
@@ -179,6 +179,29 @@
 				$('#id_ticket').val(ui.item.rticket_id);
 			}
 		});
+
+		// autocomplete nama
+		$('#nama_user').autocomplete({
+ 			source: "<?php echo site_url('Booking/get_autocomplete_nama');?>",
+ 			select: function (event, ui) {
+ 				$('[name="nama_user"]').val(ui.item.label);
+ 				$('[name="userId"]').val(ui.item.userId);
+ 			},
+
+ 			search: function (event, ui) {
+ 				$(this).addClass('loader');
+ 			},
+
+ 			response: function (event, ui) {
+ 				if (ui.content.length === 0) {
+ 					console.log('No result loaded!');
+ 				} else {
+ 					console.log('success!');
+ 				}
+
+ 				$(this).removeClass('loader');
+ 			}
+ 		});
 
 		$("#jumlah, #rticket_id").on('change keyup', function () {
 			var id_ticket = document.getElementById('id_ticket').value;

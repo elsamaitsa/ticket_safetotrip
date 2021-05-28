@@ -72,4 +72,11 @@ class M_booking extends CI_Model
     {
         return $this->db->insert_batch('t_ticket', $data);
     }
+
+    function search_nama($name){
+		$this->db->like('name', $name, 'both');
+		$this->db->order_by('name', 'ASC');
+		$this->db->limit(10);
+		return $this->db->get('sys_users')->result();
+	}
 }

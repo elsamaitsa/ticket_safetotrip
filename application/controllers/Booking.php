@@ -92,6 +92,21 @@ class Booking extends CI_Controller {
         }
     }
 
+	function get_autocomplete_nama(){
+        if(isset($_GET['term'])){
+            $result = $this->M_booking->search_nama($_GET['term']);
+            if(count($result) > 0){
+                foreach($result as $row)
+                    $arr_result[] = array(
+                        'label' => $row->name,
+                        'value' => $row->name,
+                        'userId' => $row->userId 
+                    );
+                echo json_encode($arr_result);
+            }
+        }
+    }
+
 	public function totalBiaya($rticket_id)
 	{
 		$ticket = $this->M_booking->get_ticket($rticket_id);

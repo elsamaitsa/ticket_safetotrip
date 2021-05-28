@@ -250,7 +250,7 @@
 
  		});
 
- 		// autocomplete nama
+ 		// autocomplete destinasi
  		$('#nama_destinasi').autocomplete({
  			source: "<?php echo site_url('Ticket/get_autocomplete_destinasi');?>",
  			select: function (event, ui) {
