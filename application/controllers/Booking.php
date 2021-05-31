@@ -7,6 +7,7 @@ class Booking extends CI_Controller {
 		parent::__construct();
 		$this->satpam->jaga();
 		$this->load->model('M_booking');
+		$this->load->model('M_group');
 	}
 
 	public function index()
@@ -38,13 +39,14 @@ class Booking extends CI_Controller {
 			$this->load->view('v_AddBooking');
 			$this->load->view('template/footer');
 		}else{
+			$userId = $this->input->post('userId');
 			$visitors_id = $this->input->post('visitors_id');
 			$visitors_nama = $this->input->post('visitors_nama');
 			$visitors_nohp = $this->input->post('visitors_nohp');
 			$visitors_email = $this->input->post('visitors_email');
 			$rticket_id = $this->input->post('rticket_id');
 			$tbooking_no = $this->input->post('tbooking_no');
-			$tbooking_total = $this->input->post('tbooking_total');
+			$tbooking_total = $this->input->post('tbooking_total') / $this->input->post('tbooking_jumlah');
 			$tbooking_jumlah = $this->input->post('tbooking_jumlah');
 			$tbooking_date_visited = $this->input->post('tbooking_date_visited');
 			$tbooking_date_booking = $this->input->post('tbooking_date_booking');
@@ -61,9 +63,9 @@ class Booking extends CI_Controller {
 					'tbooking_no' => $tbooking_no['input'][$i],
 					'tbooking_date_booking' => $tbooking_date_booking,
 					'tbooking_date_visited' => $tbooking_date_visited,
-					'tbooking_jumlah' => $tbooking_jumlah,
+					'tbooking_jumlah' => 1,
 					'tbooking_total' => $tbooking_total,
-					'sysuser_id' => $this->session->userdata('userId'),
+					'sysuser_id' => $userId,
 					'rticket_id' => $rticket_id,
 					'rvisitors_id' => $visitors_id['input'][$i],
 				];
@@ -113,6 +115,43 @@ class Booking extends CI_Controller {
 		$ticket = $this->M_booking->get_ticket($rticket_id);
 		$this->output->set_content_type('aplication/json')
             ->set_output(json_encode($ticket));
+	}
+
+	public function destroy($tbooking_id)
+	{	
+		$ticket = $this->M_booking->find($tbooking_id)->row_array();
+		$this->M_booking->destroy_visitor($ticket['rvisitors_id']);
+		$this->M_booking->destroy_ticket($ticket['tbooking_no']);
+		$this->M_booking->destroy($tbooking_id);
+		redirect('Booking', 'refresh');
+	}
+
+	public function edit($tbooking_id)
+	{
+		$booking = $this->M_booking->find($tbooking_id)->row_array();
+		$this->output->set_content_type('aplication/json')
+			 ->set_output(json_encode($booking));
+	}
+
+	public function update($tbooking_id)
+	{
+		$ticket = $this->M_booking->find($tbooking_id)->row_array();
+		$booking = [
+			'rticket_id' => $this->input->post('rticket_id'),
+			'sysuser_id' => $this->input->post('userId'),
+			'tbooking_total' => $this->input->post('tbooking_total'),
+			'tbooking_date_visited' => $this->input->post('tbooking_date_visited'),
+		];
+
+		$visitors = [
+			'rvisitors_nama' => $this->input->post('rvisitors_nama'),
+			'rvisitors_nohp' => $this->input->post('rvisitors_nohp'),
+			'rvisitors_email' => $this->input->post('rvisitors_email'),
+		];
+
+		$this->M_booking->save_visitors($visitors, $ticket['rvisitors_id']);
+		$this->M_booking->save($booking, $tbooking_id);
+		redirect('Booking', 'refresh');
 	}
 }
 ?>
