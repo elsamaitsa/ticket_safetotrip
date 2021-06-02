@@ -137,8 +137,10 @@
 </div>
 <script>
 	$(document).ready(function () {
+		$.ajax({
+			url: "<?= base_url('Booking/create_id/') ?>";
+		});
 		$('#jumlah').on('change keyup', function () {
-			var number_id = $('#no_booking').val();
 			let inputs = '';
 			let value = parseInt($(this).val());
 			for (let i = 1; i <= value; i++) {
