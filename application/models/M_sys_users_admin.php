@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_sys_user extends CI_Model
+class M_sys_users_admin extends CI_Model
 {
-    private $table = 'sys_users';
+    private $table = 'sys_users_admin';
 
     public function all()
     {
