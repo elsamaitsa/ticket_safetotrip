@@ -28,8 +28,6 @@ class Login extends CI_Controller
                     'border' => array(255, 255, 255),
                     'text' => array(0, 0, 0),
                     'grid' => array(255, 40, 40))
-                    // 'grid' => array(255, 40, 255))
-                    // 'grid' => array(40, 40, 255))
             );
         $cap = create_captcha($options);
         $data['image'] = $cap['image'];
