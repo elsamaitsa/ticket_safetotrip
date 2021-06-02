@@ -81,7 +81,7 @@ class Booking extends CI_Controller {
 			$this->M_booking->save_batch_visitors($visitors);
 			$this->M_booking->save_batch_booking($booking);
 			$this->M_booking->save_batch_ticket($transaksi);
-			redirect('Booking', 'refresh');
+			redirect('Booking', 'refresh'); 
 		}
 	}
 
