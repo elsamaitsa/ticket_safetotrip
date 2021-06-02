@@ -179,6 +179,20 @@
 			select: function (event, ui) {
 				$('#title').val(ui.item.label);
 				$('#id_ticket').val(ui.item.rticket_id);
+			},
+
+			search: function (event, ui) {
+				$(this).addClass('loader');
+			},
+
+			response: function (event, ui) {
+				if (ui.content.length === 0) {
+					console.log('No result loaded!');
+				} else {
+					console.log('success!');
+				}
+
+				$(this).removeClass('loader');
 			}
 		});
 
@@ -217,17 +231,6 @@
 					success: (response) => {
 						var total = jumlah * (response.rticket_harga);
 						$('#total').val(total);
-
-						// var date_booking = new Date();
-						// var d = String(date_booking.getDate()).padStart(2, '0');
-						// var m = String(date_booking.getMonth() + 1).padStart(2, '0');
-						// var y = date_booking.getFullYear();
-						// var h = addZero(date_booking.getHours());
-						// var i = addZero(date_booking.getMinutes());
-						// var s = addZero(date_booking.getSeconds());
-
-						// date_booking = d + m + y + h + i + s + '01';
-						// $('#no_booking').val(date_booking);
 
 					},
 					error: (response) => {

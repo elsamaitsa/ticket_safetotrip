@@ -12,7 +12,7 @@ class M_booking extends CI_Model
 
     public function find($id)
     {
-        return $this->db->get_where($this->table, ['tbooking_id' => $id]);
+        return $this->db->get_where('v_t_booking', ['tbooking_id' => $id]);
     }
 
     public function save($set, int $id = null)
@@ -24,6 +24,15 @@ class M_booking extends CI_Model
         }
     }
 
+    public function save_visitors($set, $id = null)
+    {
+        if($id){
+            $this->db->update('r_visitors', $set, ['rvisitors_id' => $id]);
+        } else {
+            $this->db->insert('r_visitors', $set);
+        }
+    }
+
     public function destroy(int $id)
     {
         $this->db->delete($this->table, ['tbooking_id' => $id]);
@@ -32,13 +41,8 @@ class M_booking extends CI_Model
     function search_mdestinasi($title){
         $this->db->like('mdestinasi_nama', $title , 'both');
         $this->db->order_by('rticket_id', 'ASC');
+        $this->db->limit(10);
         return $this->db->get('v_r_ticket')->result();
-    }
-
-    function search_users($title){
-        $this->db->like('name', $title , 'both');
-        $this->db->order_by('userId', 'ASC');
-        return $this->db->get('sys_users')->result();
     }
 
     public function get_ticket($id)
