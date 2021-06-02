@@ -32,7 +32,8 @@ class Satpam
     {
         // Jika user sudah login
         if (
-            $this->CI->session->userdata('userId')
+            $this->CI->session->userdata('userId') &&
+            $this->CI->session->userdata('mdestinasi_id')
         ) {
             return;
         } else {

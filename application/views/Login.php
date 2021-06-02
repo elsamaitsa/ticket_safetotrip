@@ -20,23 +20,38 @@
 			<div class="col-md-6 col-sm-6 f-poppins box-2">
 				<h3 class="font-weight-bold text-center mb-5">Login</h3>
 				<!-- Login Form -->
-				<form method="POST">
-					<!-- <?php if ($pesan = $this->session->flashdata('message')) : ?>
-                    <div class="alert alert-danger alert-dismissible show fade">
+				<form action="<?= base_url('Login/check_login') ?>" method="POST">
+					<?php if ($pesan = $this->session->flashdata('message')) : ?>
+                    <div class="alert alert-danger alert-dismissible show fade font-12">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <?= $pesan ?>
                     </div>
-                <?php endif ?> -->
+                <?php endif ?>
 					<div class="form-group">
 						<label class="label-custom">Username</label>
 						<input type="email" id="login" class="form-control input-custom" name="email"
-							placeholder="ex : admin@admin.co.id" required>
+							placeholder="ex : admin@admin.co.id" value="<?= set_value('email') ?>" autocomplete="off" required>
 					</div>
 					<div class="form-group">
 						<label class="label-custom">Password</label>
 						<input type="password" id="password" class="form-control input-custom" name="password"
-							placeholder="Enter Your Password" required>
+							placeholder="Enter Your Password" value="<?= set_value('password') ?>" required>
 						<i class="fa fa-eye hide-pass toggle-password" toggle="#password"></i>
+					</div>
+					<div class="row">
+						<div class="col-sm-6 col-md-6">
+							<div class="form-group">
+								<?= $image ?>
+							</div>
+						</div>
+						<div class="col-sm-6 col-md-6">
+							<div class="form-group">
+								<input type="text" name="captcha" class="form-control input-custom" autocomplete="off" required/>
+								<?php if (!empty(form_error('captcha'))) : ?>
+									<small class="error text-danger"><?= form_error('captcha') ?></small>
+								<?php endif; ?>
+							</div>
+						</div>
 					</div>
 					<div class="text-center">
 						<input type="submit" class="btn btn-sm btn-info btn-custom" value="Log In">
