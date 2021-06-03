@@ -257,6 +257,14 @@ div.dataTables_wrapper div.dataTables_filter {
 	margin-left: auto;
 }
 
+.box-label-2 {
+	width: 40%;
+	padding: 3px;
+	border-radius: 10px;
+	font-size: 12px;
+	display: block;
+}
+
 .bg-box-blue {
 	background: var(--info);
 	color: var(--white);

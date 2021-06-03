@@ -243,7 +243,22 @@
 							<h6 class="font-13"><span class="mr-1">:</span>Labuan Bajo, NTT</h6>
 						</div>
 					</div>
-					<div class="row">''
+					<div class="row">
+						<div class="col-sm-6">
+							<h6 class="font-13">Tanggal Booking</h6>
+						</div>
+						<div class="col-sm-6">
+							<h6 class="font-13"><span class="mr-1">:</span>20 Mei 2021</h6>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6 col-md-6">
+							<h6 class="font-13">Status</h6>
+						</div>
+						<div class="col-sm-6 col-md-6">
+							<div class="box-label-2 bg-box-blue">Digunakan</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="modal-footer justify-content-between">
