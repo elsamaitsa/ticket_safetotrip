@@ -38,20 +38,8 @@
 							placeholder="Enter Your Password" value="<?= set_value('password') ?>" required>
 						<i class="fa fa-eye hide-pass toggle-password" toggle="#password"></i>
 					</div>
-					<div class="row">
-						<div class="col-sm-6 col-md-6">
-							<div class="form-group">
-								<?= $image ?>
-							</div>
-						</div>
-						<div class="col-sm-6 col-md-6">
-							<div class="form-group">
-								<input type="text" name="captcha" class="form-control input-custom" autocomplete="off" required/>
-								<?php if (!empty(form_error('captcha'))) : ?>
-									<small class="error text-danger"><?= form_error('captcha') ?></small>
-								<?php endif; ?>
-							</div>
-						</div>
+					<div class="form-group">
+						<?= $captcha ?>
 					</div>
 					<div class="text-center">
 						<input type="submit" class="btn btn-sm btn-info btn-custom" value="Log In">
