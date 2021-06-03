@@ -243,6 +243,7 @@
 							<h6 class="font-13"><span class="mr-1">:</span>Labuan Bajo, NTT</h6>
 						</div>
 					</div>
+					<div class="row">''
 				</div>
 			</div>
 			<div class="modal-footer justify-content-between">

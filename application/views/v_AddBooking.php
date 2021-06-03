@@ -138,7 +138,7 @@
 <script>
 	$(document).ready(function () {
 		$.ajax({
-			url: "<?= base_url('Booking/create_id/') ?>";
+			url: "<?= base_url('Booking/create_id/') ?>",
 		});
 		$('#jumlah').on('change keyup', function () {
 			let inputs = '';
