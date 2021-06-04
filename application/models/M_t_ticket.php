@@ -77,4 +77,26 @@ class M_t_ticket extends CI_model
         $sql = $this->db->get($this->table);
         return $sql->row_array();
     }
+
+    public function Note_check($tbooking_no)
+    {
+        $this->db->where('tbooking_no', $tbooking_no);
+        $sql = $this->db->get('v_t_booking')->row_array();
+        return $sql;
+    }
+
+    public function get_topdf($tbooking_no)
+    {
+        $this->db->where('tbooking_no', $tbooking_no);
+        $sql = $this->db->get('v_t_booking')->row_array();
+
+        $status = $sql['tticket_status'];
+        if ($status == 'dipesan') {
+            $data = array(
+                'tticket_status' => 'digunakan',
+            );
+            $this->db->update($this->table, $data, ['tbooking_no' => $tbooking_no]);
+        }
+        return $sql;
+    }
 }

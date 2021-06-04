@@ -49,4 +49,21 @@ class T_Ticket extends CI_Controller
 		$this->output->set_content_type('aplication/json')
 			->set_output(json_encode($detail));
 	}
+
+	public function Note_check($tbooking_no)
+	{
+		$check = $this->M_t_ticket->Note_check($tbooking_no);
+		$this->output->set_content_type('aplication/json')
+			->set_output(json_encode($check));
+	}
+
+	public function Cetak($tbooking_no)
+	{
+		$data['booking'] = $this->M_t_ticket->get_topdf($tbooking_no);
+		$this->load->library('pdf');
+
+		$this->pdf->setPaper('A4', 'lanscape');
+		$this->pdf->filename = "ticket.pdf";
+		$this->pdf->load_view('v_ticketpdf', $data);
+	}
 }
