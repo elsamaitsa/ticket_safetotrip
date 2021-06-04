@@ -21,12 +21,17 @@
 				<h3 class="font-weight-bold text-center mb-5">Login</h3>
 				<!-- Login Form -->
 				<form action="<?= base_url('Login/check_login') ?>" method="POST">
-					<?php if ($pesan = $this->session->flashdata('message')) : ?>
-                    <div class="alert alert-danger alert-dismissible show fade font-12">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <?= $pesan ?>
-                    </div>
-                <?php endif ?>
+					<?php if (isset($error_message)) : ?>
+                        <div class="alert alert-danger alert-dismissible show fade font-12">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <?= $error_message ?>
+                        </div>
+                    <?php elseif(isset($sukses)) : ?>
+                        <div class="alert alert-success alert-dismissible show fade font-12">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <?= $sukses ?>
+                        </div>
+					<?php endif ?>
 					<div class="form-group">
 						<label class="label-custom">Username</label>
 						<input type="email" id="login" class="form-control input-custom" name="email"
@@ -62,10 +67,10 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form action="" method="POST" class="form-modal-to-content">
+				<form action="<?= base_url('Login/reset_password') ?>" method="POST" class="form-modal-to-content">
 					<div class="form-group">
 						<label class="font-15">Email</label>
-						<input type="text" class="form-control" name="rmoment_name"
+						<input type="email" class="form-control" name="email"
 							placeholder="Masukkan Email Anda" autocomplete="off" required>
 					</div>
 					<div class="modal-footer justify-content-between">
