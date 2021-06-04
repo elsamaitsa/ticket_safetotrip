@@ -116,7 +116,7 @@ class Login extends CI_Controller
 
         $this->load->library('email', $config);
 
-        $this->email->from('bengkelaplikasi1620@gmail.com', 'Admin Ticketing');
+        $this->email->from('bengkelaplikasi1620@gmail.com', 'Admin Wisata');
         $this->email->to($this->input->post('email'));
 
         if ($type == 'forgot') {
