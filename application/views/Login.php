@@ -46,13 +46,42 @@
 					</div>
 				</form>
 				<div class="text-center d-flex mt-5 jc-center">
-					<h6 class="font-10 v-middle">Lupa password ? </h6><a href="modal_lupa" class="font-10 ml-1">Reset
+					<h6 class="font-10 v-middle">Lupa password ? </h6><a href="#ResetModal" class="font-10 ml-1" data-toggle="modal">Reset
 						Password</a>
 				</div>
 			</div>
 		</div>
 	</div>
+	<div class="modal fade" id="ResetModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header bg-info">
+				<h5 class="modal-title"><i class="fa fa-sync-alt mr-1"></i>Reset Modal</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true"><i class="ico--close"></i></span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form action="" method="POST" class="form-modal-to-content">
+					<div class="form-group">
+						<label class="font-15">Email</label>
+						<input type="text" class="form-control" name="rmoment_name"
+							placeholder="Masukkan Email Anda" autocomplete="off" required>
+					</div>
+					<div class="modal-footer justify-content-between">
+						<button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-sm btn-info"><i class="fa fa-paper-plane mr-1"></i>Send</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /Modal -->
 </body>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
 	$(document).ready(function () {
 		$(".toggle-password").click(function () {
