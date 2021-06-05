@@ -172,7 +172,7 @@
 	<!-- /.modal-dialog -->
 </div>
 
-<div id="myModal" class="modal fade">
+<div id="HapusModal" class="modal fade">
 	<div class="modal-dialog modal-confirm">
 		<div class="modal-content">
 			<div class="modal-header flex-column">
@@ -187,7 +187,7 @@
 			</div>
 			<div class="modal-footer justify-content-center">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-				<a href="<?= base_url('Group/destroy/' . $value['rmoment_id']) ?>" class="btn btn-danger"
+				<a href="<?= base_url('Booking/destroy/' . $value['tbooking_id']) ?>" class="btn btn-danger"
 					style="padding-top: 12px; color:#fff;">Delete</a>
 			</div>
 		</div>

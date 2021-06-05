@@ -37,6 +37,14 @@ class M_booking extends CI_Model
     {
         $this->db->delete($this->table, ['tbooking_id' => $id]);
     }
+    public function destroy_visitor($id)
+    {
+        $this->db->delete('r_visitors', ['rvisitors_id' => $id]);
+    }
+    public function destroy_ticket($id)
+    {
+        $this->db->delete('t_ticket', ['tbooking_no' => $id]);
+    }
 
     function search_mdestinasi($title){
         $this->db->like('mdestinasi_nama', $title , 'both');

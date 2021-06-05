@@ -124,9 +124,9 @@ class Booking extends CI_Controller {
 	public function destroy($tbooking_id)
 	{	
 		$ticket = $this->M_booking->find($tbooking_id)->row_array();
-		$this->M_booking->destroy_visitor($ticket['rvisitors_id']);
-		$this->M_booking->destroy_ticket($ticket['tbooking_no']);
 		$this->M_booking->destroy($tbooking_id);
+		$this->M_booking->destroy_ticket($ticket['tbooking_no']);
+		$this->M_booking->destroy_visitor($ticket['rvisitors_id']);
 		redirect('Booking', 'refresh');
 	}
 
